@@ -1,0 +1,718 @@
+---
+title: "Demographics and reproductive biology of H. schistosus from bycatch on the west coast of India"
+subtitle: "Analysis for Manuscript"
+output:
+   html_document:
+    css: style.css
+    df_print: kable
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+#Global options
+
+options(max.print="75")
+knitr::opts_chunk$set(echo = FALSE, error = T, warning = F, message = F, tidy = T, cache = T,
+                      dpi = 300, fig.align = "center", fig.height = 4.5, fig.width = 8)
+
+#Required libraries
+
+library(plyr)
+library(tidyverse)
+library(lubridate)
+library(viridis)
+
+# Importing data
+
+snakes = read.csv("./Data/Sea-snakes_fish-dep_mastersheet_250420.csv")
+embryos = read.csv("./Data/Sea snake_embryo data_mastersheet.csv")
+
+snakes <- snakes%>%
+  mutate(Year = as.factor(Year))%>%
+  filter(Species == "Hydrophis curtus" | Species == "Hydrophis schistosus")%>%
+  droplevels()
+
+
+theme_set(theme_bw()+
+            theme(legend.position = "top",
+                  text = element_text(size = 15)
+                  )
+          )#setting ggplot theme
+
+HS <- snakes%>%
+  filter(Species == "Hydrophis schistosus")%>% # filtering out other snakes from bycatch data
+  mutate(Year = as.factor(Year))
+
+
+```
+
+# Demographics of _H. schistosus_ across time
+
+## Sample size
+
+```{r}
+snakes%>%
+  group_by(Species)%>%
+  count(name = "N")
+```
+
+```{r}
+snakes%>%
+  filter(Gear.Type != "")%>%
+  select(Date, Gear.Type, Boat.Name...Owner,No..of.Hauls, Average.Haul.Duration..Hours., Tow.duration.hours)%>%
+  distinct()%>%
+  mutate(Tow.duration.hours = case_when(!is.na(Tow.duration.hours) ~ Tow.duration.hours,
+                                        is.na(Tow.duration.hours) ~ No..of.Hauls*Average.Haul.Duration..Hours.))%>%
+  group_by(Gear.Type)%>%
+  summarise(n = n(),
+            haul.hours = sum(Tow.duration.hours, na.rm = T))
+  
+```
+
+## Age structure
+
+```{r}
+age.yr <- snakes%>%
+  group_by(Species, Year)%>%
+  summarise(N = n(),
+            mean = mean(Snout.to.Vent..cm., na.rm = T))
+
+
+maturtity <- snakes%>%
+  group_by(Species)%>%
+  count()%>%
+  mutate(juv = 35,
+         adult = ifelse(Species == "Hydrophis curtus", 54, 65))
+  
+```
+
+```{r}
+# plotting distribution of SVL across years
+
+snakes%>%
+  filter(Snout.to.Vent..cm. > 20)%>%
+  ggplot(aes(Year, Snout.to.Vent..cm.))+
+  geom_violin(fill = "grey")+
+  geom_boxplot(width = 0.1)+
+  geom_hline(data = maturtity, aes(yintercept = adult), linetype = "dashed")+
+  geom_hline(data = maturtity, aes(yintercept = juv), linetype = "dotted")+
+  #stat_summary(fun.data = "mean_sdl", geom = "pointrange", size = 1)+
+  geom_label(data = age.yr, aes(Year, 10, label = N))+
+  facet_wrap(~Species, ncol = 1, scales = "free_y")+
+  labs(y = "Snout to vent length (cm)")+
+  theme(strip.text = element_text(face = "italic"))
+
+ggsave(last_plot(), filename = "./Figures/figure1.tiff", height = 6, width = 8)
+  
+```
+
+```{r}
+pop.yr <- snakes%>%
+  filter(!is.na(Class))%>% # fix 2016 svl
+  group_by(Species, Year)%>%
+  count(Class)%>%
+  complete(Class, fill = list(n = 0))%>%
+  mutate(N = sum(n))%>%
+  group_by(Year, Species, Class)%>%
+  mutate(prop.age = n/N)
+
+pop.yr%>%
+  group_by(Species, Class)%>%
+  skimr::skim(prop.age)%>%
+  skimr::yank("numeric")%>%
+  select(-hist)
+```
+
+```{r}
+pop.yr%>%
+  filter(Year != 2019)%>%
+  group_by(Species, Class)%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(Class:p.value)
+```
+
+
+Age structure does not change significantly over a four year period from 2016 to 2019.
+
+```{r}
+snakes%>%
+  filter(Year != "2019")%>%
+  group_by(Species)%>%
+  select(Year, Snout.to.Vent..cm.)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(Snout.to.Vent..cm. ~ Year, data = .)),
+          sumr = map(mod, broom::tidy),
+          stat = map(mod, car::Anova))%>%
+  select(stat)%>%
+  unnest()
+```
+
+GLM shows significance but how do you interpret these results?
+
+```{r, fig.height = 4.5, fig.width=8}
+# plotting distribution of SVL across months
+
+month.svl <- HS%>%
+  filter(Year == "2018", # data not sufficient for other years
+         Snout.to.Vent..cm. > 20)%>% # removing erroneous data
+  mutate(Month = factor(Month, levels = month.name))%>%
+  complete(Month)%>%
+  group_by(Month)%>%
+  summarise(mean.SVL = mean(Snout.to.Vent..cm., na.rm = T))
+
+births <- data.frame(Species = "Hydrophis schistosus", Month = "April")
+  
+HS%>%
+  filter(Year == "2018", # data not sufficient for other years
+         Snout.to.Vent..cm. > 20)%>% # removing erroneous data
+  mutate(Month = factor(Month, levels = month.name))%>%
+  complete(nesting(Species), Month)%>%
+  droplevels()%>%
+  ggplot(aes(Month, Snout.to.Vent..cm.))+
+  geom_violin(fill = "light grey")+
+  #geom_point(data = month.svl, aes(x = Month, y = mean.SVL), size = 3)+
+  geom_boxplot(width = 0.1)+
+  geom_segment(data = births, aes(x = Month, xend = Month, y = 0 , yend = 10), #marking births
+               arrow = arrow(length = unit(0.25, "cm"), ends = "first"), size = 1)+
+  geom_text(data = births, aes(x = Month, y = 20, label = paste("Observed \n births")))+
+  geom_vline(aes(xintercept = "June"), size = 1)+#start of the monsoon ban
+  geom_vline(aes(xintercept = "August"), size = 1)+#end of the monsoon ban
+  geom_text(aes(x = "July", y = 80, label = "Monsoon ban"))+
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))+
+  labs(y = "Snout to vent length (cm)")
+
+ggsave(last_plot(), filename = "./Figures/figure2.tiff", height = 4.5, width = 8)
+
+```
+
+Proportion of neonates increases in March to May. Birth and neonates were observed around the same time.
+
+- GLM testing change in proportion of SVL < 40 over months
+- Other ways to test age structure?
+
+```{r}
+# proportion of jeuveniles in each month
+
+snakes%>%
+  filter(Year == "2018", # data not sufficient for other years
+         Snout.to.Vent..cm. > 20)%>% # removing erroneous data
+  mutate(Month = factor(Month, levels = month.name))%>%
+  group_by(Species, Month)%>%
+  summarise(prop.neonate = sum(Snout.to.Vent..cm. < 40)/n())%>%
+  spread(Month, prop.neonate)
+```
+
+
+## Sex ratios
+
+```{r, fig.height=8}
+# Plotting sex ratios across years
+
+snakes%>%
+  filter(Sex == "Male" | Sex == "Female")%>%
+  group_by( Species, Year, Month)%>%
+  summarise(N = n(),
+            females = sum(Sex == "Female"),
+            prop.female = females/N)%>%
+  mutate(Month = factor(Month, levels = month.name))%>%
+  complete(Month)%>%
+  ggplot(aes(Month, prop.female))+
+  geom_col(width = 0.5, col = "black")+
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))+
+  facet_grid(Year ~ Species)
+
+```
+
+Proportion of females to entire population stays constant over the sampling period.
+
+```{r}
+snakes%>%
+  group_by(Species)%>%
+  filter(Sex == "Male" | Sex == "Female")%>%
+  summarise(females = sum(Sex == "Female"),
+            N = n())
+
+# is proportion of females different from 0.5?
+snakes%>%
+  filter(Sex == "Male" | Sex == "Female")%>%
+  group_by(Species)%>%
+  summarise(females = sum(Sex == "Female"),
+            N = n())%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$females, .$N, p = 0.5)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()
+```
+
+Sex ratio is not different from 0.5 p = 0.71
+
+# Observed reproductive cycle of _H. schistosus_
+
+```{r}
+# percentage of gravid females in sample
+
+HS%>%
+  count(Gravid)%>%
+  mutate(N = sum(n))%>%
+  mutate(prop.gravid = n/N)%>%
+  filter(Gravid == "Yes")
+```
+
+̥
+```{r}
+# checking the number of gravid females per year
+
+HS%>%
+  group_by(Year)%>%
+  filter(Gravid == "Yes")%>%
+  count(Gravid)%>%
+  spread(Gravid, n)
+```
+
+Proper sampling was only conducted in 2018/19 and hence only this period is used for analysis of reproductive cycles.
+
+```{r}
+# calculating the proportion of gravid females per month
+
+gravid <- HS%>%
+  mutate(Month = factor(Month, levels = month.name))%>%
+  filter(Year == "2018" | Year == "2019")%>% # only for 2018/19
+  group_by(Month)%>%
+  summarise(N = n(),
+            gravid = sum(Gravid == "Yes"),
+            prop.gravid = gravid/N)
+
+print(gravid)
+```
+
+Describing change in the relative proportions of gravid females across months and years of sampling.
+
+```{r}
+# plotting prop gravid per month
+
+gravid%>%
+  mutate(Month = factor(Month, levels = month.name))%>%
+  complete(Month, fill = list(prop.gravid = 0))%>%
+  ggplot(aes(Month, prop.gravid))+
+  geom_point(size = 3)+
+  geom_path(aes(group = 1), size = 1, linetype = "dashed")+
+  geom_segment(aes(x = "April", xend = "April", y = 0 , yend = 0.02), #marking births
+               arrow = arrow(length = unit(0.25, "cm"), ends = "first"), size = 1)+
+  geom_text(aes(x = "April", y = 0.04, label = paste("Observed \n births")))+
+  geom_vline(aes(xintercept = "June"), size = 1)+#start of the monsoon ban
+  geom_vline(aes(xintercept = "August"), size = 1)+#end of the monsoon ban
+  geom_text(aes(x = "July", y = 0.20, label = "Monsoon ban"))+
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))+
+  labs(y = "Proportion of gravid females")
+
+ggsave(last_plot(), filename = "./Figures/figure3.tiff", height = 4.5, width = 8)
+```
+
+Pregnancy from Novemeber to May. Peak in Feb. Observed two live births in April.
+
+- Anova/GLM with change in proportion of gravid females over time.
+
+# Development of embryos and eggs
+
+## Sample size
+
+```{r}
+embryos%>%
+  summarise(n.mothers = length(unique(Field.Code)),
+            n.embryos = length(unique(Embryo.Code)))
+```
+
+## Summary
+
+```{r}
+embryos%>%
+  select(Egg.Length..mm., Egg.Width..mm., Egg.Weigth..g., Snout.to.Vent..cm., Embryo.Weight..g.)%>%
+  skimr::skim()%>%
+  skimr::yank("numeric")%>%
+  select(-hist)
+```
+
+```{r}
+embryos%>%
+  group_by(Field.Code)%>%
+  filter(Sex != "")%>%
+  summarise(prop.female = sum(Sex == "Female")/n())%>%
+  skimr::skim(prop.female)%>%
+  skimr::yank("numeric")%>%
+  select(-hist)
+
+embryos%>%
+  filter(Sex != "")%>%
+  summarise(females = sum(Sex == "Female"),
+            N = n())
+
+broom::tidy(prop.test(86, 166, p = 0.5))%>%
+  select(estimate:conf.high)
+```
+
+The sex ratio in clutches is not significantly different from 0.5.
+
+## Infertility 
+
+```{r}
+embryos%>%
+  count(Embryo)%>%
+  mutate(N = sum(n), rate = n*100/N)
+```
+
+## Matrotrophy
+
+Do female _H. schistosus_ expend energy in the development of embryos? or Are the eggs formed and yolk only provides nourishment?
+
+```{r}
+embryos%>%
+  ggplot(aes(Embryo.Weight..g., Yolk.Weight..g.))+
+  geom_point(size = 3)+
+  geom_smooth(method = "lm", linetype = "dashed", size = 1)
+```
+
+```{r}
+embryos%>%
+  select(Yolk.Weight..g., Embryo.Weight..g.)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(Yolk.Weight..g. ~ Embryo.Weight..g., data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(term:r.squared)
+```
+
+Yolk weight decreases as embryo weight increases. 
+
+```{r}
+embryos%>%
+  ggplot(aes(Embryo.Weight..g., Egg.Weigth..g.))+
+  geom_point(aes(col = Yolk.Weight..g.), size = 3)+
+  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
+  scale_color_viridis(name = "Yolk Weight (g)")+
+  labs(x = "Embryo Weight (g)", y = "Total Egg Weight (g)")
+
+ggsave(last_plot(), filename = "./Figures/figure4.tiff", height = 6, width = 8)
+```
+
+```{r}
+embryos%>%
+  select(Egg.Weigth..g., Embryo.Weight..g.)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(Egg.Weigth..g. ~ Embryo.Weight..g., data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(term:r.squared)
+```
+
+Egg weight increases as embryo weight increases
+
+Decrease of fat bodies as embryos develop indicates matrotrophic nutrition.
+
+- Photos of females dissected ordered according to embryo dev stage 
+
+# Reproductive effort
+
+```{r}
+# Cleaning reproductive effort data
+
+re <- embryos%>%
+  left_join(snakes, by = c("Date", "Field.Code", "Species"))%>%
+  select(Date, Field.Code, Embryo.Code, Species, Egg.Length..mm.:Tail.Length..cm..x,
+         Egg.Weigth..g.:Sex.x, Snout.to.Vent..cm..y:Tail.Length..cm..y, Weight..g.,
+         -Body.Length..cm..x, - Body.Length..cm..y)%>%
+  filter(Species == "Hydrophis schistosus")%>%
+  rename(Embryo.SVL = Snout.to.Vent..cm..x,
+         Embryo.TL = Tail.Length..cm..x,
+         Embryo.Sex = Sex.x,
+         Female.SVL = Snout.to.Vent..cm..y,
+         Female.TL = Tail.Length..cm..y,
+         Mother.Wt = Weight..g.
+         )%>%
+  filter(Female.SVL > 50)
+```
+
+
+## Increase in clutch size with female age
+
+Does the amount of enery expended by female _H. schistosus_ reduce with age?
+
+```{r}
+re_clutch <- re%>%
+  select(Field.Code, Egg.Weigth..g., Mother.Wt, Female.SVL)%>%
+  group_by(Field.Code)%>%
+  summarise(clutch.size = n(),
+            Clutch.wt = sum(Egg.Weigth..g.),
+            Mother.wt = last(Mother.Wt),
+            Female.SVL = last(Female.SVL))%>%
+  mutate(rcm = Clutch.wt/(Mother.wt - Clutch.wt))
+```
+
+```{r}
+re_clutch%>%
+  ggplot(aes(Female.SVL, clutch.size))+
+  geom_point(size =3)+
+  geom_smooth(method = "lm")
+```
+
+```{r}
+re_clutch%>%
+  select(Female.SVL, clutch.size)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(clutch.size ~ Female.SVL, data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(term:r.squared)
+```
+
+The number of eggs borne by females increases with age (SVL).
+
+## Change in overall reproductive effort with age
+
+```{r}
+re_clutch%>%
+  ggplot(aes(Female.SVL, rcm))+
+  geom_point(aes(col = clutch.size), size = 3)+
+  geom_smooth(method = "lm", linetype = "dashed")+
+  scale_y_continuous(name = "Relative clutch mass")+
+  scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
+  scale_color_viridis(name = "Clutch size")+
+  theme(legend.text = element_text(size = 10))
+
+ggsave(last_plot(), filename = "./Figures/figure5.tiff", height = 6, width = 8)
+```
+
+```{r}
+re_clutch%>%
+  select(Female.SVL, rcm)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(rcm ~ Female.SVL, data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(term:r.squared)
+```
+
+The overall reproductive effort **does not change** with female age.
+
+## Change in reproductive effort per embryo with female age
+
+Does the effort per embryo change with female age?
+
+```{r}
+# reproductive effort per embruo
+
+re_embryo <- re%>%
+  select(Field.Code, Embryo.Code, Egg.Weigth..g.,  Mother.Wt, Female.SVL, Embryo.Sex, Embryo.SVL)%>%
+  group_by(Field.Code)%>%
+  mutate(clutch.wt = sum(Egg.Weigth..g.), 
+         Female.wt = Mother.Wt - clutch.wt)%>%
+  group_by(Field.Code, Embryo.Code)%>%
+  summarise(inv = Egg.Weigth..g./Female.wt, 
+            Female.SVL = last(Female.SVL),
+            Embryo.Sex = Embryo.Sex,
+            Embryo.SVL = Embryo.SVL)%>%
+  ungroup()
+```
+
+```{r}
+# using residuals to control for embryo development
+
+emsvlinv <- lm(inv ~ Embryo.SVL, data = re_embryo)
+
+re_embryo%>%
+  modelr::add_residuals(emsvlinv)%>%
+  ggplot(aes(Female.SVL, resid))+
+  geom_point(aes(col = Embryo.SVL), size = 3)+
+  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
+  scale_y_continuous(name = "Relative egg mass (residuals)")+
+  scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
+  scale_color_viridis(name = "Embryo SVL (cm)")
+
+ggsave(last_plot(), filename = "./Figures/figure6.tiff", height = 6, width = 8)
+```
+
+```{r}
+re_embryo%>%
+  select(Female.SVL, inv, Embryo.SVL)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(inv ~ Female.SVL + Embryo.SVL, data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(term:p.value, r.squared)
+```
+
+The relative egg mass (controlled for embryo development) reduces with female SVL.
+
+## Difference in reproductive effort for male and female embryos
+
+```{r}
+re_embryo%>%
+  filter(Embryo.Sex == "Male" | Embryo.Sex == "Female")%>%
+  modelr::add_residuals(emsvlinv)%>%
+  ggplot(aes(Female.SVL, resid, shape = Embryo.Sex))+
+  geom_point(aes(col = Embryo.SVL), size = 3)+
+  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
+  scale_y_continuous(name = "Relative egg mass (residuals)")+
+  scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
+  scale_color_viridis(name = "Embryo SVL (cm)")
+```
+
+```{r}
+re_embryo%>%
+  filter(Embryo.Sex == "Male" | Embryo.Sex == "Female")%>%
+  select(Embryo.Sex, inv, Embryo.SVL)%>%
+  nest()%>%
+  mutate(mod = map(data, ~lm(inv ~ Embryo.Sex + Embryo.SVL, data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(term:p.value, r.squared)
+```
+
+# Mortality in bycatch
+
+## Overall mortality
+
+```{r}
+snakes%>%
+  group_by(Species)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+```{r}
+snakes%>%
+  group_by(Species)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  ungroup()%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+```
+
+## Mortality by age class
+
+```{r}
+snakes%>%
+  filter(!is.na(Class))%>%
+  group_by(Species, Class)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+```{r}
+snakes%>%
+  filter(!is.na(Class))%>%
+  group_by(Species, Class)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+
+```
+
+## Mortality by sex
+
+```{r}
+snakes%>%
+  filter(Sex != "")%>%
+  group_by(Species, Sex)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+```{r}
+snakes%>%
+  filter(Sex != "")%>%
+  group_by(Species, Sex)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+```
+
+## Mortality by female reproductive status
+
+```{r}
+HS%>%
+  filter(Sex == "Female",
+         Class == "Adult")%>%
+  group_by(Gravid)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+```{r}
+HS%>%
+  filter(Sex == "Female",
+         Class == "Adult")%>%
+  group_by(Gravid)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  ungroup()%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+```
+
