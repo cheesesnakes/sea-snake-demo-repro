@@ -1,5 +1,5 @@
 # Demographics and reproductive biology of *H. schistosus* in fisheries bycatch on the West coast of India.
 
-# Working abstract
+## Working abstract
 
 The hydrophids are a recent linage of Elapidae that spend their entire lives underwater. They have developed an array of adaptations to aquatic life. They are are completely viviparous lineage, with varying reproductive strategies that differ from their terestrial counterparts. We describe the the population structure and reproductive biology of H. schistosus caught in trawler, gillnet and shore seine bycatch in Malvan on the west coast of India. We sampled nets from 2016 to 2019 and recorded the number of gravid females. Gravid females found dead in nets were dissected and embryos measured. We found that the population structure of H. schistosus has not changed much in the four years of sampling. The snakes appear to carry young from November to May, giving birth in April. While the number of eggs increases with female age, the reproductive effort remains the same. However, investment in embryos goes down. Like other sea snakes, H. schistosus is caught frequently and in large numbers as bycatch in the region, experiencing high mortalities. The reproductive strategies along with other ecological differences may give H. schistosus an advantage compared to its cohorts and other taxa in the face of such threats.
