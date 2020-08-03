@@ -189,8 +189,6 @@ HS%>%
   scale_x_discrete(guide = guide_axis(n.dodge = 2))+
   labs(y = "Snout to vent length (cm)")
 
-ggsave(last_plot(), filename = "./Figures/figure2.tiff", height = 4.5, width = 8)
-
 ```
 
 Proportion of neonates increases in March to May. Birth and neonates were observed around the same time.
@@ -315,7 +313,6 @@ gravid%>%
   scale_x_discrete(guide = guide_axis(n.dodge = 2))+
   labs(y = "Proportion of gravid females")
 
-ggsave(last_plot(), filename = "./Figures/figure3.tiff", height = 4.5, width = 8)
 ```
 
 Pregnancy from Novemeber to May. Peak in Feb. Observed two live births in April.
@@ -403,7 +400,6 @@ embryos%>%
   scale_color_viridis(name = "Yolk Weight (g)")+
   labs(x = "Embryo Weight (g)", y = "Total Egg Weight (g)")
 
-ggsave(last_plot(), filename = "./Figures/figure4.tiff", height = 6, width = 8)
 ```
 
 ```{r}
@@ -493,8 +489,6 @@ re_clutch%>%
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Clutch size")+
   theme(legend.text = element_text(size = 10))
-
-ggsave(last_plot(), filename = "./Figures/figure5.tiff", height = 6, width = 8)
 ```
 
 ```{r}
@@ -545,7 +539,6 @@ re_embryo%>%
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Embryo SVL (cm)")
 
-ggsave(last_plot(), filename = "./Figures/figure6.tiff", height = 6, width = 8)
 ```
 
 ```{r}
