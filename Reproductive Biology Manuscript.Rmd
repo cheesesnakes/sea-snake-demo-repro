@@ -10,13 +10,14 @@ output:
     toc_float: yes
     toc_depth: 2
     number_sections: yes
+    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
 #Global options
 
 options(max.print="75")
-knitr::opts_chunk$set(echo = FALSE, error = T, warning = F, message = F, tidy = T, cache = T,
+knitr::opts_chunk$set(error = T, warning = F, message = F, tidy = T, cache = T,
                       dpi = 300, fig.align = "center", fig.height = 4.5, fig.width = 8)
 
 #Required libraries
@@ -89,7 +90,7 @@ maturtity <- snakes%>%
   
 ```
 
-```{r}
+```{r fig.height=9}
 # plotting distribution of SVL across years
 
 snakes%>%
@@ -213,7 +214,7 @@ snakes%>%
 
 ## Sex ratios
 
-```{r, fig.height=8}
+```{r, fig.height=13.5, fig.width=16}
 # Plotting sex ratios across years
 
 snakes%>%
@@ -335,7 +336,7 @@ embryos%>%
 
 ```{r}
 embryos%>%
-  select(Egg.Length..mm., Egg.Width..mm., Egg.Weigth..g., Snout.to.Vent..cm., Embryo.Weight..g.)%>%
+  select(Egg.Length..mm.., Egg.Width..mm.., Egg.Weigth..g.., Snout.to.Vent..cm., Embryo.Weight..g.)%>%
   skimr::skim()%>%
   skimr::yank("numeric")%>%
   select(-hist)
@@ -396,7 +397,7 @@ Yolk weight decreases as embryo weight increases.
 
 ```{r}
 embryos%>%
-  ggplot(aes(Embryo.Weight..g., Egg.Weigth..g.))+
+  ggplot(aes(Embryo.Weight..g., Egg.Weigth..g..))+
   geom_point(aes(col = Yolk.Weight..g.), size = 3)+
   geom_smooth(method = "lm", linetype = "dashed", size = 1)+
   scale_color_viridis(name = "Yolk Weight (g)")+
@@ -406,9 +407,9 @@ embryos%>%
 
 ```{r}
 embryos%>%
-  select(Egg.Weigth..g., Embryo.Weight..g.)%>%
+  select(Egg.Weigth..g.., Embryo.Weight..g.)%>%
   nest()%>%
-  mutate(mod = map(data, ~lm(Egg.Weigth..g. ~ Embryo.Weight..g., data = .)),
+  mutate(mod = map(data, ~lm(Egg.Weigth..g.. ~ Embryo.Weight..g., data = .)),
          sumr = map(mod, broom::tidy),
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
@@ -429,8 +430,8 @@ Decrease of fat bodies as embryos develop indicates matrotrophic nutrition.
 
 re <- embryos%>%
   left_join(snakes, by = c("Date", "Field.Code", "Species"))%>%
-  select(Date, Field.Code, Embryo.Code, Species, Egg.Length..mm.:Tail.Length..cm..x,
-         Egg.Weigth..g.:Sex.x, Snout.to.Vent..cm..y:Tail.Length..cm..y, Weight..g.,
+  select(Date, Field.Code, Embryo.Code, Species, Egg.Length..mm..:Tail.Length..cm..x,
+         Egg.Weigth..g..:Sex.x, Snout.to.Vent..cm..y:Tail.Length..cm..y, Weight..g.,
          -Body.Length..cm..x, - Body.Length..cm..y)%>%
   filter(Species == "Hydrophis schistosus")%>%
   rename(Embryo.SVL = Snout.to.Vent..cm..x,
@@ -450,10 +451,10 @@ Does the amount of enery expended by female _H. schistosus_ reduce with age?
 
 ```{r}
 re_clutch <- re%>%
-  select(Field.Code, Egg.Weigth..g., Mother.Wt, Female.SVL)%>%
+  select(Field.Code, Egg.Weigth..g.., Mother.Wt, Female.SVL)%>%
   group_by(Field.Code)%>%
   summarise(clutch.size = n(),
-            Clutch.wt = sum(Egg.Weigth..g.),
+            Clutch.wt = sum(Egg.Weigth..g..),
             Mother.wt = last(Mother.Wt),
             Female.SVL = last(Female.SVL))%>%
   mutate(rcm = Clutch.wt/(Mother.wt - Clutch.wt))
@@ -515,12 +516,12 @@ Does the effort per embryo change with female age?
 # reproductive effort per embruo
 
 re_embryo <- re%>%
-  select(Field.Code, Embryo.Code, Egg.Weigth..g.,  Mother.Wt, Female.SVL, Embryo.Sex, Embryo.SVL)%>%
+  select(Field.Code, Embryo.Code, Egg.Weigth..g..,  Mother.Wt, Female.SVL, Embryo.Sex, Embryo.SVL)%>%
   group_by(Field.Code)%>%
-  mutate(clutch.wt = sum(Egg.Weigth..g.), 
+  mutate(clutch.wt = sum(Egg.Weigth..g..), 
          Female.wt = Mother.Wt - clutch.wt)%>%
   group_by(Field.Code, Embryo.Code)%>%
-  summarise(inv = Egg.Weigth..g./Female.wt, 
+  summarise(inv = Egg.Weigth..g../Female.wt, 
             Female.SVL = last(Female.SVL),
             Embryo.Sex = Embryo.Sex,
             Embryo.SVL = Embryo.SVL)%>%
