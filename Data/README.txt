@@ -1,4 +1,4 @@
-Data base for Dsouza et al. (2021) Resource use and the impacts of fisheries on two sympatric sea snake species on the West Coast of India.
+Data base for Dsouza and Rao (unpubl.) Demographics and reproductive biology of *Hydrophis schistosus* may make it more resilient to bycatch effects than other sea snakes.
 
 Email: shawn27.dsouza@gmail.com
 Collection: Jan 2017 - May 2019
