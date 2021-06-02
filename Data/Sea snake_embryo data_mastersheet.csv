@@ -1,236 +1,236 @@
-﻿Sr. No.,Date,Field Code,Embryo Code,Species,Egg Length (mm) ,Egg Width (mm) ,Snout to Vent (cm),Body Length (cm),Tail Length (cm),Head Length (mm),Head Width (mm),Snout to Nose (mm),Nose to Eye (mm),Gape (mm),Neck Circumference (mm),Body Circumference (mm),Egg Weigth (g) ,Embryo Weight (g),Yolk Weight (g),Sex,Photo No.,Remarks
-1,03-02-2016,CESS 2001,CESS 2001.A1,Hydrophis schistosus,,,11.1,,1.9,,,,,,,,,,,Male,,
-2,03-02-2016,CESS 2001,CESS 2001.A2,Hydrophis schistosus,,,11.8,,1.9,,,,,,,,,,,Male,,
-3,03-02-2016,CESS 2001,CESS 2001.A3,Hydrophis schistosus,,,13.4,,2.3,,,,,,,,,,,Male,,
-4,03-02-2016,CESS 2001,CESS 2001.A4,Hydrophis schistosus,,,9,,1.6,,,,,,,,,,,Male,,
-5,12-03-2017,HSGR02,HSGR02.A1,Hydrophis schistosus,,,18.5,,3.1,0.963,0.506,,0.2,0.82,0.476,,,,,Female,,
-6,12-03-2017,HSGR02,HSGR02.A2,Hydrophis schistosus,,,19,,3.2,0.886,0.478,,0.259,0.671,0.4,,,,,Female,,
-7,12-03-2017,HSGR02,HSGR02.A3,Hydrophis schistosus,,,20,,3.2,0.829,0.53,,0.313,0.79,0.531,,,,,Female,,
-8,12-03-2017,HSGR02,HSGR02.A4,Hydrophis schistosus,,,20,,3.2,0.855,0.403,,0.278,0.79,0.362,,,,,Female,,
-9,12-03-2017,HSGR02,HSGR02.A5,Hydrophis schistosus,,,19.5,,3.2,0.872,0.399,,0.236,0.785,0.373,,,,,Female,,
-10,12-03-2017,HSGR02,HSGR02.A6,Hydrophis schistosus,,,18,,3.1,0.935,0.482,,0.325,0.78,0.402,,,,,Male,,
-11,12-03-2017,HSGR02,HSGR02.A7,Hydrophis schistosus,,,18.5,,3.3,0.827,0.45,,0.279,0.82,0.432,,,,,Male,,
-12,12-03-2017,HSGR02,HSGR02.A8,Hydrophis schistosus,,,19.7,,3.5,0.873,0.464,,0.317,0.744,0.352,,,,,Male,,
-13,12-03-2017,HSGR02,HSGR02.A9,Hydrophis schistosus,,,20,,3.6,0.897,0.434,,0.207,0.667,0.369,,,,,Male,,
-14,12-03-2017,HSGR02,HSGR02.A10,Hydrophis schistosus,,,19.4,,3.4,0.816,0.459,,0.29,0.756,0.418,,,,,Male,,
-15,12-03-2017,HSGR02,HSGR02.A11,Hydrophis schistosus,,,20,,3.5,0.897,0.434,,0.31,0.754,0.375,,,,,Male,,
-16,12-03-2017,HSGR02,HSGR02.A12,Hydrophis schistosus,,,20.2,,3.5,0.823,0.501,,0.21,0.624,0.399,,,,,Male,,
-17,20-03-2017,HSGR03,HSGR03.A1,Hydrophis schistosus,,,15.1,,1.8,0.939,0.511,,0.232,0.754,0.537,,,,,Female,,
-18,20-03-2017,HSGR03,HSGR03.A2,Hydrophis schistosus,,,15.6,,2.1,0.978,0.637,,0.284,0.69,0.358,,,,,Male,,
-19,20-03-2017,HSGR03,HSGR03.A3,Hydrophis schistosus,,,15,,1.8,0.933,0.524,,0.282,0.78,0.432,,,,,Male,,
-20,20-03-2017,HSGR03,HSGR03.A4,Hydrophis schistosus,,,16.2,,2.2,0.807,0.447,,0.255,0.534,0.312,,,,,Male,,
-21,20-03-2017,HSGR03,HSGR03.A5,Hydrophis schistosus,,,17,,2.5,0.818,0.447,,0.24,0.685,0.372,,,,,Male,,
-22,20-03-2017,HSGR03,HSGR03.A6,Hydrophis schistosus,,,16.7,,2.4,0.882,0.493,,0.243,0.601,0.401,,,,,Male,,
-23,20-03-2017,HSGR03,HSGR03.A7,Hydrophis schistosus,,,14.9,,3.8,0.848,0.504,,0.206,0.575,0.326,,,,,Male,,
-24,20-03-2017,HSGR03,HSGR03.A8,Hydrophis schistosus,,,16.5,,2.1,0.894,0.58,,0.29,0.753,0.282,,,,,Male,,
-25,20-03-2017,HSGR03,HSGR03.A9,Hydrophis schistosus,,,15.5,,2,0.863,0.507,,0.227,0.746,0.319,,,,,Male,,
-26,21-03-2017,HSGR04,HSGR04.A1,Hydrophis schistosus,,,11.7,,1.2,,,,0.233,0.539,,,,,,Female,,
-27,21-03-2017,HSGR04,HSGR04.A2,Hydrophis schistosus,,,11.5,,1.5,,,,0.215,0.58,,,,,,Male,,
-28,21-03-2017,HSGR04,HSGR04.A3,Hydrophis schistosus,,,11.2,,1.2,,,,0.219,0.56,,,,,,Male,,
-29,21-03-2017,HSGR04,HSGR04.A4,Hydrophis schistosus,,,11.5,,1.2,,,,0.223,0.559,,,,,,Male,,
-30,21-03-2017,HSGR05,HSGR05.A1,Hydrophis schistosus,,,15.5,,1.5,0.808,0.497,,0.213,0.715,0.496,,,,,Female,,
-31,21-03-2017,HSGR05,HSGR05.A2,Hydrophis schistosus,,,12.5,,1.7,0.8,0.494,,0.24,0.701,0.403,,,,,Male,,
-32,21-03-2017,HSGR05,HSGR05.A3,Hydrophis schistosus,,,16.2,,2,0.8,0.439,,0.45,0.672,0.446,,,,,Male,,
-33,21-03-2017,HSGR05,HSGR05.A4,Hydrophis schistosus,,,16,,2,0.827,0.434,,0.208,0.697,0.413,,,,,Male,,
-34,21-03-2017,HSGR05,HSGR05.A5,Hydrophis schistosus,,,14.5,,1.5,0.948,0.541,,0.24,0.743,0.326,,,,,Female,,
-35,21-03-2017,HSGR05,HSGR05.A6,Hydrophis schistosus,,,16.2,,2.2,0.966,0.541,,0.232,0.741,0.19,,,,,Male,,
-36,21-03-2017,HSGR05,HSGR05.A7,Hydrophis schistosus,,,14,,2,0.894,0.506,,0.228,0.597,0.244,,,,,Female,,
-37,10-11-2017,CESS 2087,CESS 2087.A1,Hyrdrophis viperinus,,,24,,3,1.292,0.786,,0.48,1.12,0.588,,4.5,19.7,,Female,,
-38,10-11-2017,CESS 2087,CESS 2087.A2,Hyrdrophis viperinus,5.648,2.018,26.7,,2.6,1.184,0.754,,0.404,11.02,0.536,,5.83,19.7,,Female,,
-39,10-11-2017,CESS 2087,CESS 2087.A3,Hyrdrophis viperinus,4.836,2.378,26.5,,2.8,1.288,0.762,,0.412,0.808,0.562,,4.23,20.44,,Female,,
-40,10-11-2017,CESS 2087,CESS 2087.A4,Hyrdrophis viperinus,2.226,5.022,24.4,,2.7,1.252,7.72,,0.49,1.172,0.608,,6.32,20.14,,Female,,
-41,19-01-2018,HSMT03,HSMT03.A1,Hydrophis schistosus,33.69,27.7,,,,,,,,,,,11,0,11,,,too small to measure
-42,19-01-2018,HSMT03,HSMT03.A2,Hydrophis schistosus,30.34,22.84,,,,,,,,,,,11,0,11,,,
-43,19-01-2018,HSMT03,HSMT03.A3,Hydrophis schistosus,28.27,20.01,,,,,,,,,,,11,0,11,,,
-44,19-01-2018,HSMT03,HSMT03.A4,Hydrophis schistosus,32.23,20.38,,,,,,,,,,,10,0,10,,,
-45,19-01-2018,HSMT03,HSMT03.A5,Hydrophis schistosus,32.23,19.63,,,,,,,,,,,10,0,10,,,
-46,19-01-2018,HSMT03,HSMT03.A6,Hydrophis schistosus,35.57,22.66,,,,,,,,,,,10,0,10,,,
-47,19-01-2018,HSMT03,HSMT03.A7,Hydrophis schistosus,31.68,25.27,,,,,,,,,,,11,0,11,,,
-48,19-01-2018,HSMT03,HSMT03.A8,Hydrophis schistosus,27.55,21.82,,,,,,,,,,,11,0,11,,,
-49,19-01-2018,HSMT03,HSMT03.B1,Hydrophis schistosus,35,28.23,,,,,,,,,,,11,0,11,,,Specimen Broken
-50,19-01-2018,HSMT03,HSMT03.B10,Hydrophis schistosus,27.06,24.79,,,,,,,,,,,11,0,11,,,
-51,19-01-2018,HSMT03,HSMT03.B11,Hydrophis schistosus,23.25,29.21,,,,,,,,,,,11,0,11,,,
-52,19-01-2018,HSMT03,HSMT03.B12,Hydrophis schistosus,,,,,,,,,,,,,,,,,,Too small + Delicate --> Not in Catalogue?
-53,19-01-2018,HSMT03,HSMT03.B2,Hydrophis schistosus,29.93,18.31,,,,,,,,,,,11,0,11,,,
-54,19-01-2018,HSMT03,HSMT03.B3,Hydrophis schistosus,28.55,22.82,,,,,,,,,,,12,0,12,,,
-55,19-01-2018,HSMT03,HSMT03.B4,Hydrophis schistosus,28.18,21.91,,,,,,,,,,,11,0,11,,,
-56,19-01-2018,HSMT03,HSMT03.B5,Hydrophis schistosus,25.59,26.65,,,,,,,,,,,10,0,10,,,Unfertilized
-57,19-01-2018,HSMT03,HSMT03.B6,Hydrophis schistosus,28.25,25.52,,,,,,,,,,,10,0,10,,,
-58,19-01-2018,HSMT03,HSMT03.B7,Hydrophis schistosus,31.63,23.65,,,,,,,,,,,11,0,11,,,
-59,19-01-2018,HSMT03,HSMT03.B8,Hydrophis schistosus,30.03,24.33,,,,,,,,,,,11,0,11,,,
-60,19-01-2018,HSMT03,HSMT03.B9,Hydrophis schistosus,28.74,22.72,,,,,,,,,,,10,0,10,,,
-61,05-02-2018,HSMT18,HSMT18.A1,Hydrophis schistosus,47.19,37.72,12.5,14.5,2,6.78,5.38,1.88,2.62,6.9,3.84,3.8,19,3,16,Female,,
-62,05-02-2018,HSMT18,HSMT18.A2,Hydrophis schistosus,36.98,37.72,13.2,14.4,1.2,6.34,5.56,2.2,2.5,7.02,4.28,3.74,17,3,14,Female,,
-63,05-02-2018,HSMT18,HSMT18.A3,Hydrophis schistosus,37.82,37.68,12,13.4,1.4,5.37,3.69,1.58,1.07,5.86,1.69,2.31,18,3,15,Female,,
-64,05-02-2018,HSMT18,HSMT18.A4,Hydrophis schistosus,33.18,36.5,13.7,15,1.3,7.62,4.62,1.78,2.46,6.52,4.22,4.56,16,3,13,Male,,
-65,05-02-2018,HSMT18,HSMT18.A5,Hydrophis schistosus,36.52,40.67,11.8,13.5,1.7,4.96,3.36,2.28,1.31,6.21,1.7,1.92,16,3,13,Female,,
-66,05-02-2018,HSMT18,HSMT18.A6,Hydrophis schistosus,31.62,42.54,12.6,14.4,1.8,6.6,4,1.98,2.52,7.22,3.3,3.9,16,3,13,Male,,
-67,05-02-2018,HSMT18,HSMT18.B1,Hydrophis schistosus,42.46,35.83,11.4,14.6,3.2,6.01,3.81,2.32,1.36,5.77,3.23,3.27,17,3,14,Male,,
-68,05-02-2018,HSMT18,HSMT18.B2,Hydrophis schistosus,31.48,43.9,11.3,14.4,3.1,5.95,3.9,1.81,1.33,6.68,2.24,3.64,17,3,14,Female,,
-69,05-02-2018,HSMT18,HSMT18.B3,Hydrophis schistosus,37.43,36.62,12.45,14.2,1.75,6.185,3.35,1.595,2.25,6.225,3.055,2.955,15,3,12,Female,,
-70,05-02-2018,HSMT18,HSMT18.B4,Hydrophis schistosus,36.19,39.87,11.9,13.8,1.9,5.73,4.58,1.61,1.59,6.18,2.86,1.98,15,3,12,Female,,
-71,06-02-2018,HSDB100,HSDB100.A1,Hydrophis schistosus,54.55,38.16,16.6,19.9,3.3,8.51,3.86,2.08,0.96,6.59,3.78,7.34,21,7,14,Female,,
-72,06-02-2018,HSDB100,HSDB100.A2,Hydrophis schistosus,42.4,32.07,16.6,18.8,2.2,8.5,4.82,1.57,1.29,7.11,3.84,5.35,17,7,10,Female,,
-73,06-02-2018,HSDB100,HSDB100.A3,Hydrophis schistosus,54.34,31.42,17.4,19.6,2.2,8.87,6.98,2.28,1.62,7.84,3.7,5.62,22,7,15,Female,,
-74,06-02-2018,HSDB100,HSDB100.A4,Hydrophis schistosus,47.68,38.94,19.5,21.5,2,10.02,6.26,1.96,2.66,7.7,4.18,7.62,18,7,11,Female,,
-75,06-02-2018,HSDB100,HSDB100.B1,Hydrophis schistosus,60.63,35.47,17.6,21.5,3.9,8.74,6.13,2.04,1.14,7.68,3.21,7.18,21,8,13,Female,,
-76,06-02-2018,HSDB100,HSDB100.B2,Hydrophis schistosus,45.75,36.8,16.2,20.5,4.3,8.78,5.88,2.2,2.68,7.76,4.92,6.92,19,6,13,Male,,
-77,06-02-2018,HSDB100,HSDB100.B3,Hydrophis schistosus,45.68,33.79,20,22,2,8.5,6.58,2.08,2.18,7.7,4.58,5.18,20,6,14,Male,,
-78,09-02-2018,HSMT44,HSMT44.A1,Hydrophis schistosus,,,12,13.1,1.1,5.37,3.24,1.17,0.7,4.38,1.47,1.7,10,0,10,Female,Male ,
-79,09-02-2018,HSMT44,HSMT44.A2,Hydrophis schistosus,,,10.4,11.6,1.2,5.73,3.59,1.33,0.76,4.19,1.23,1.32,10,0,10,Male,,
-80,09-02-2018,HSMT44,HSMT44.A3,Hydrophis schistosus,52.49,33.23,12.7,13.5,0.8,5.36,4.5,1.74,1.98,5.62,3.5,3.12,10,0,10,Male,,
-81,09-02-2018,HSMT44,HSMT44.A4,Hydrophis schistosus,49.97,33.72,10.2,11.9,1.7,5.14,3.11,1.55,1.5,3.71,1.87,1.8,10,0,10,Female,,
-82,09-02-2018,HSMT44,HSMT44.A5,Hydrophis schistosus,49.03,31.19,10.8,11.2,0.4,5.72,4.14,1.76,2.2,5.46,2.9,2.64,10,0,10,Female,,
-83,09-02-2018,HSMT45,HSMT45.A1,Hydrophis schistosus,43.15,36.18,,,,,,,,,,,15,0,15,,,
-84,09-02-2018,HSMT45,HSMT45.A2,Hydrophis schistosus,36.83,36.83,,,,,,,,,,,14,0,14,,,
-85,09-02-2018,HSMT45,HSMT45.A3,Hydrophis schistosus,36.76,35.01,,,,,,,,,,,15,0,15,,,
-86,09-02-2018,HSMT45,HSMT45.A4,Hydrophis schistosus,40.47,30.5,,,,,,,,,,,16,0,16,,,
-87,09-02-2018,HSMT45,HSMT45.A5,Hydrophis schistosus,37.81,31.2,,,,,,,,,,,14,0,14,,,In Catalogue
-88,09-02-2018,HSMT45,HSMT45.A6,Hydrophis schistosus,35.58,35.58,,,,,,,,,,,16,0,16,,,
-89,09-02-2018,HSMT45,HSMT45.A7,Hydrophis schistosus,41.85,44.47,,,,,,,,,,,15,0,15,,,
-90,09-02-2018,HSMT45,HSMT45.B1,Hydrophis schistosus,,,,,,,,,,,,,13,0,13,,,HSMT 45. B1: Broken Tail
-91,09-02-2018,HSMT45,HSMT45.B2,Hydrophis schistosus,,,,8.5,8.5,4.92,3.52,1.22,1.56,3.62,2.82,1.5,14,0,14,Female,,
-92,09-02-2018,HSMT45,HSMT45.B3,Hydrophis schistosus,,,7.1,7.6,0.5,5.52,2.82,1.47,0.66,2.38,1.9,0.78,15,0,15,Male,,
-93,09-02-2018,HSMT45,HSMT45.B4,Hydrophis schistosus,,,7.3,8,0.7,5.6,4.34,1.26,1.72,4.46,2.64,3.18,15,0,15,Male,,
-94,09-02-2018,HSMT45,HSMT45.B5,Hydrophis schistosus,,,6.3,7,0.7,4.48,3,1.64,1.86,3.4,1.88,2.16,13,0,13,Female,,
-95,09-02-2018,HSMT46,HSMT46.A1,Hydrophis schistosus,49.42,41.9,,,,,,,,,,,16,0,16,Male,,
-96,09-02-2018,HSMT46,HSMT46.A2,Hydrophis schistosus,50.49,45.11,,,,,,,,,,,18,0,18,Male,,
-97,09-02-2018,HSMT46,HSMT46.A3,Hydrophis schistosus,45.2,45.82,,,,,,,,,,,16,0,16,Male,,
-98,09-02-2018,HSMT46,HSMT46.A4,Hydrophis schistosus,46.66,46.07,,,,,,,,,,,17,0,17,Female,,
-99,09-02-2018,HSMT46,HSMT46.A5,Hydrophis schistosus,47.77,46.22,,,,,,,,,,,16,0,16,Male,,
-100,09-02-2018,HSMT46,HSMT46.A6,Hydrophis schistosus,47.26,44.19,,,,,,,,,,,15,0,15,Female,,
-101,09-02-2018,HSMT46,HSMT46.A7,Hydrophis schistosus,50.05,45.18,,,,,,,,,,,15,0,15,Female,,
-102,09-02-2018,HSMT46,HSMT46.B1,Hydrophis schistosus,51.06,45.08,,,,,,,,,,,16,0,16,Female,,
-103,09-02-2018,HSMT46,HSMT46.B2,Hydrophis schistosus,37.74,35.85,,,,,,,,,,,11,0,11,,,Only yolk
-104,09-02-2018,HSMT46,HSMT46.B3,Hydrophis schistosus,47.74,37.83,,,,,,,,,,,13,0,13,,,Only yolk
-105,09-02-2018,HSMT47,HSMT47.A1,Hydrophis schistosus,,,,,,,,,,,,,5,0,5,Male,,
-106,09-02-2018,HSMT47,HSMT47.A10,Hydrophis schistosus,40.8,41.56,,,,,,,,,,,12,0,12,,,
-107,09-02-2018,HSMT47,HSMT47.A11,Hydrophis schistosus,39.58,36.79,,,,,,,,,,,13,0,13,,,
-108,09-02-2018,HSMT47,HSMT47.A2,Hydrophis schistosus,45.17,38.89,,,,,,,,,,,13,0,13,Female,,
-109,09-02-2018,HSMT47,HSMT47.A3,Hydrophis schistosus,42.67,38.83,,,,,,,,,,,14,0,14,Male,,
-110,09-02-2018,HSMT47,HSMT47.A4,Hydrophis schistosus,41.86,36.53,,,,,,,,,,,11,0,11,Male,,
-111,09-02-2018,HSMT47,HSMT47.A5,Hydrophis schistosus,39.76,37.5,,,,,,,,,,,11,0,11,,,Damaged + Delicate
-112,09-02-2018,HSMT47,HSMT47.A6,Hydrophis schistosus,40.56,38.88,,,,,,,,,,,11,0,11,,,Damaged + Delicate
-113,09-02-2018,HSMT47,HSMT47.A7,Hydrophis schistosus,40.96,36.33,,,,,,,,,,,13,0,13,,,"Only Yolk, Damaged + Delicate"
-114,09-02-2018,HSMT47,HSMT47.A8,Hydrophis schistosus,36.8,31.32,,,,,,,,,,,9,0,9,,,Damaged + Delicate
-115,09-02-2018,HSMT47,HSMT47.A9,Hydrophis schistosus,41.56,35.55,,,,,,,,,,,12,0,12,,,
-116,09-02-2018,HSMT47,HSMT47.B1,Hydrophis schistosus,45.56,31.7,,,,,,,,,,,12,0,12,,,Damaged + Delicate
-117,09-02-2018,HSMT47,HSMT47.B2,Hydrophis schistosus,45.67,29.01,,,,,,,,,,,12,0,12,,,Damaged + Delicate
-118,09-02-2018,HSMT47,HSMT47.B3,Hydrophis schistosus,,,,,,,,,,,,,,,,,,"Ruptured, Damaged + Delicate"
-119,09-02-2018,HSMT47,HSMT47.B4,Hydrophis schistosus,,,,,,,,,,,,,,,,,,Damaged + Delicate
-120,12-02-2018,HSMT48,HSMT48.A1,Hydrophis schistosus,,,16,18.2,2.2,6.14,5.6,2.08,2.34,7.26,4.64,3.28,13,3,10,Female,Male ,
-121,12-02-2018,HSMT48,HSMT48.A2,Hydrophis schistosus,39.41,35.04,15.7,17.5,1.8,6.54,5.18,1.82,2.44,7.52,3.3,4.44,16,4,12,Male,,
-122,12-02-2018,HSMT48,HSMT48.A3,Hydrophis schistosus,35.57,34.14,15.7,17.5,1.8,6.5,4.18,1.82,2.28,7.58,3.5,3.18,16,3,13,Male,Female,
-123,12-02-2018,HSMT48,HSMT48.A4,Hydrophis schistosus,34.47,35.87,16.3,18.5,2.2,6.1,4.88,2.14,2.08,7.28,3.84,3.18,16,4,12,Male,,
-124,12-02-2018,HSMT48,HSMT48.A5,Hydrophis schistosus,47.4,34.41,,,,,,,,,,,20,4,16,Male,,Not in Catalogue
-125,12-02-2018,HSMT48,HSMT48.B1,Hydrophis schistosus,30.58,25.92,15,17.5,2.5,7.06,4.02,1.88,2.3,7.5,3.5,3.42,9,3,6,Female,,Ruptured
-126,12-02-2018,HSMT48,HSMT48.B2,Hydrophis schistosus,42.27,35.59,16.6,17.6,1,5.41,4.08,1.53,1.79,6.19,3.17,3.09,18,4,14,Female,Male ,
-127,12-02-2018,HSMT48,HSMT48.B3,Hydrophis schistosus,38.13,36.4,16.3,18.9,2.6,6.92,5.26,2,2.82,6.9,2.7,3.84,15,4,11,Male,,
-128,12-02-2018,HSMT48,HSMT48.B4,Hydrophis schistosus,44.99,35.58,,,,,,,,,,,18,4,14,Male,,Not in Catalogue
-129,12-02-2018,HSMT55,HSMT55.A1,Hydrophis schistosus,48.6,32.02,16.7,18.5,1.8,7.14,5.2,2.22,2.34,7.62,4.92,2.68,18,4,14,Male,,
-130,12-02-2018,HSMT55,HSMT55.A2,Hydrophis schistosus,49.12,32.67,16.2,18.5,2.3,7,5.5,1.96,2.54,7.8,3.66,3.52,17,3,14,Male,,
-131,12-02-2018,HSMT55,HSMT55.A3,Hydrophis schistosus,40.97,38.62,16.2,18.5,2.3,6.82,5.52,2.22,2.52,7.3,3.78,3.72,17,4,13,Male,,
-132,12-02-2018,HSMT55,HSMT55.A4,Hydrophis schistosus,38.11,40.22,15.7,17.9,2.2,7.06,3.98,1.75,1.39,6.6,3.14,1.95,15,4,11,Female,Male ,
-133,12-02-2018,HSMT55,HSMT55.B1,Hydrophis schistosus,25.66,34.37,15.5,17.4,1.9,5.96,4.78,1.76,2,6.52,4.2,3.84,18,3,15,Female,,
-134,12-02-2018,HSMT55,HSMT55.B2,Hydrophis schistosus,30.64,40.02,14.7,16.5,1.8,5.92,4.48,1.64,2,6.9,3.04,2.94,18,4,14,Male,,
-135,12-02-2018,HSMT55,HSMT55.B3,Hydrophis schistosus,37.91,37.61,16.8,17.9,1.1,5.99,4.19,2.45,1.24,7.08,3.25,3.72,19,4,15,Male,,
-136,12-02-2018,HSMT55,HSMT55.B4,Hydrophis schistosus,30.06,33.34,14.9,16.4,1.5,5.94,4.02,1.78,1.33,7.29,3.36,4.2,18,4,14,Male,Female,
-137,12-02-2018,HSMT55,HSMT55.B5,Hydrophis schistosus,41.62,31,15.9,17.8,1.9,6.47,3.92,2.11,1.2,5.3,2.74,3.2,17,4,13,Female,Male ,
-138,12-02-2018,HSMT66,HSMT66.A1,Hydrophis schistosus,49.25,38.25,,,,,,,,,,,10,0,10,Female,,
-139,12-02-2018,HSMT66,HSMT66.A2,Hydrophis schistosus,,,,,,,,,,,,,9,0,9,Female,,Tail Missing
-140,12-02-2018,HSMT66,HSMT66.A3,Hydrophis schistosus,,,,,,,,,,,,,13,0,13,Male,,
-141,12-02-2018,HSMT66,HSMT66.B1,Hydrophis schistosus,49.2,34.56,,,,,,,,,,,16,0,16,Female,,Tail Broken
-142,12-02-2018,HSMT66,HSMT66.B2,Hydrophis schistosus,47.3,29.36,,,,,,,,,,,13,0,13,Female,,
-143,13-02-2018,HSMT55,HSMT55.A5,Hydrophis schistosus,,,15.2,17.8,2.6,7.17,4.13,2.24,1.91,7.01,2.1,3.02,,4,,Female,,
-144,19-02-2018,HSDB112,HSDB112.A1,Hydrophis schistosus,25.52,31.37,,,,,,,,,,,10,0,10,Female,,Tail Cut 
-145,19-02-2018,HSDB112,HSDB112.A2,Hydrophis schistosus,31.3,32.3,,,,,,,,,,,13,0,13,Female,,
-146,19-02-2018,HSDB112,HSDB112.A3,Hydrophis schistosus,31.86,33.4,,,,,,,,,,,14,0,14,Female,,
-147,19-02-2018,HSDB112,HSDB112.A4,Hydrophis schistosus,32.88,33,,,,,,,,,,,13,0,13,Female,,
-148,19-02-2018,HSDB112,HSDB112.A5,Hydrophis schistosus,33.78,32.82,,,,,,,,,,,13,0,13,,,
-149,19-02-2018,HSDB112,HSDB112.A6,Hydrophis schistosus,32.64,32.76,,,,,,,,,,,12,0,12,Male,,
-150,19-02-2018,HSDB112,HSDB112.A7,Hydrophis schistosus,34.93,34.33,,,,,,,,,,,13,0,13,Female,,
-151,19-02-2018,HSDB112,HSDB112.A8,Hydrophis schistosus,25.18,29.22,,,,,,,,,,,6,0,6,Male,,Specimen Broken on Top
-152,19-02-2018,HSDB112,HSDB112.A9,Hydrophis schistosus,36,31.74,,,,,,,,,,,13,0,13,,,Nothing In Catalogue
-153,19-02-2018,HSDB112,HSDB112.B1,Hydrophis schistosus,36.58,31.82,,,,,,,,,,,12,0,12,Female,,
-154,19-02-2018,HSDB112,HSDB112.B2,Hydrophis schistosus,34.64,30.12,,,,,,,,,,,12,0,12,Female,,
-155,19-02-2018,HSDB112,HSDB112.B3,Hydrophis schistosus,35.39,31.74,,,,,,,,,,,12,0,12,,,Broken
-156,19-02-2018,HSDB112,HSDB112.B4,Hydrophis schistosus,34.93,34.1,,,,,,,,,,,11,0,11,Male,,
-157,19-02-2018,HSDB112,HSDB112.B5,Hydrophis schistosus,36.02,34.07,,,,,,,,,,,6,0,6,,,Nothing in Catalogue
-158,22-02-2018,HSDB115,HSDB115.01,Hydrophis schistosus,,,22.6,25.4,2.8,9.16,5.56,2.79,1.61,6.63,4.02,3.99,27,10,,Male,,
-159,22-02-2018,HSDB115,HSDB115.02,Hydrophis schistosus,,,23,25,2,10.56,6.16,2.25,1.49,8.26,3.29,5.74,24,11,,Female,,
-160,22-02-2018,HSDB115,HSDB115.03,Hydrophis schistosus,,,22.5,23.9,1.4,9.61,4.12,2.81,0.68,6.94,5.29,6.28,28,11,,Male,,
-161,22-02-2018,HSDB115,HSDB115.04,Hydrophis schistosus,,,21.9,22.4,0.5,10.25,4.97,2.19,1.58,8.31,3.43,6.56,23,12,,Male,,
-162,22-02-2018,HSDB115,HSDB115.05,Hydrophis schistosus,,,,,,,,,,,,,31,,,Female,,
-163,22-02-2018,HSDB115,HSDB115.06,Hydrophis schistosus,,,,,,,,,,,,,23,,,Male,,
-164,22-02-2018,HSDB115,HSDB115.07,Hydrophis schistosus,,,,,,,,,,,,,30,,,Female,,
-165,22-02-2018,HSDB115,HSDB115.08,Hydrophis schistosus,,,,,,,,,,,,,11,,,,,Unfertilized
-166,12-03-2018,HSDB151,HSDB151.A1,Hydrophis schistosus,58.14,49.61,14,15.6,1.6,7.52,4.78,1.75,1.05,6.07,2.74,3.92,13,3,10,Male,,Ruptured
-167,12-03-2018,HSDB151,HSDB151.A2,Hydrophis schistosus,38.06,42.25,14.9,15.6,0.7,6.49,4.89,2.08,1.99,5.53,2.84,3.25,15,4,11,Female,Male ,
-168,12-03-2018,HSDB151,HSDB151.A3,Hydrophis schistosus,48.86,41.55,13.8,15.5,1.7,6.7,4.98,2.33,1.65,5.9,2.38,3.86,15,3,12,Female,,
-169,12-03-2018,HSDB151,HSDB151.A4,Hydrophis schistosus,,,14.5,16.6,2.1,7.6,4.5,2.11,1.28,6.82,3.01,4.08,,4,,Male,,
-170,12-03-2018,HSDB151,HSDB151.A5,Hydrophis schistosus,,,15,16.5,1.5,7.24,5.74,1.74,2.08,6.54,3.78,3.32,,3,,Male,,
-171,12-03-2018,HSDB151,HSDB151.B1,Hydrophis schistosus,49.28,36.27,15.4,17.2,1.8,6.64,6.16,2.06,3.38,7.08,4.32,3.54,17,3,14,Male,Female,
-172,12-03-2018,HSDB151,HSDB151.B2,Hydrophis schistosus,40.27,32.47,13.9,16,2.1,6.43,4.7,2.1,1.43,7.21,2.46,2.74,15,3,12,Male,,
-173,12-03-2018,HSDB151,HSDB151.B3,Hydrophis schistosus,40.32,35.39,14.6,16.6,2,6.44,4.18,1.74,1.37,7.43,2.82,2.62,15,3,12,Male,Female,
-174,12-03-2018,HSDB151,HSDB151.B4,Hydrophis schistosus,43.88,35.91,,,,,,,,,,,15,0,15,Male,,Not in Catalogue
-175,12-03-2018,HSDB151,HSDB151.B5,Hydrophis schistosus,51.18,33.25,,,,,,,,,,,16,0,16,Female,,Not in Catalogue
-176,31-03-2018,HSMT111,HSMT111.A1,Hydrophis schistosus,55.18,34.08,23.6,25.9,2.3,10.36,7.49,2.17,1.53,8.37,5.24,11.37,21,15,6,Female,,
-177,31-03-2018,HSMT111,HSMT111.A2,Hydrophis schistosus,56.22,37.3,25,28,3,10.4,7.54,2.32,2.68,9.08,5.7,10.38,21,17,4,Male,Female,
-178,31-03-2018,HSMT111,HSMT111.A3,Hydrophis schistosus,65.79,33.69,23.3,25.6,2.3,11.41,7.16,2.7,2.27,8.88,6.53,12.69,22,19,3,Female,,
-179,31-03-2018,HSMT111,HSMT111.B1,Hydrophis schistosus,,,19.8,23.7,3.9,11.07,6.34,3.47,1.82,6.72,4.84,11.48,17,16,1,Female,,Embryo sac undivided
-180,31-03-2018,HSMT111,HSMT111.B2,Hydrophis schistosus,,,21.3,24.7,3.4,11.12,7.09,2.17,1.5,9.45,5.5,15.5,17,16,1,Female,,Embryo sac undivided
-181,31-03-2018,HSMT111,HSMT111.B3,Hydrophis schistosus,,,24.7,28.2,3.5,10.18,8.04,2.8,2.6,8.26,6.3,7.52,16,14,2,Male,Female,Embryo sac undivided
-182,31-03-2018,HSMT113,HSMT113.A1,Hydrophis schistosus,,,24.7,28,3.3,10.5,7.7,2.8,3.08,9.74,6.4,6.94,18,13,5,Male,,Ruptured
-183,31-03-2018,HSMT113,HSMT113.A2,Hydrophis schistosus,,,22.1,24.2,2.1,11.15,4.94,2.22,1.47,10.43,3.71,6.33,20,11,9,Male,,Ruptured
-184,31-03-2018,HSMT113,HSMT113.A3,Hydrophis schistosus,,,20.5,24.5,4,10.28,8.2,2.18,3,8.08,6.76,7.7,21,12,9,Female,,Ruptured
-185,31-03-2018,HSMT113,HSMT113.A4,Hydrophis schistosus,,,,,,,,,,,,,16,12,4,Male,,Ruptured
-186,31-03-2018,HSMT113,HSMT113.B1,Hydrophis schistosus,,,21,26.2,5.2,10.14,7.72,2.2,2.54,8.52,7.92,10.6,18,12,6,Female,,Ruptured
-187,31-03-2018,HSMT110,HSMT110,Hydrophis schistosus,,,24.6,28.4,3.8,10.29,4.41,2.74,1.65,8.49,4.05,4.82,,18,,Female,,
-188,03-04-2018,HSMT130,HSMT130.A1,Hydrophis schistosus,54.54,45.39,19.8,21.8,2,10.05,5.55,2.3,1.5,7.94,4.47,6.67,22,8,14,Female,,
-189,03-04-2018,HSMT130,HSMT130.A2,Hydrophis schistosus,73.9,42.46,20.1,23.2,3.1,8.96,4.87,2.5,1.55,8.29,4.03,4.77,26,8,18,Female,,
-190,03-04-2018,HSMT130,HSMT130.A3,Hydrophis schistosus,,,20,23,3,9.22,5.68,2.12,2.66,7.9,4.86,5.2,15,7,8,Female,,Ruptured
-191,03-04-2018,HSMT130,HSMT130.B1,Hydrophis schistosus,72.13,50.57,19.9,23,3.1,9.15,6.45,2.19,2.2,6.17,2.5,5.4,26,8,18,Female,,
-192,03-04-2018,HSMT130,HSMT130.B2,Hydrophis schistosus,63.17,51.08,21.5,24.5,3,9.72,7.7,2.2,2.84,8.94,5.88,4.6,27,8,19,Female,,
-193,03-04-2018,HSMT130,HSMT130.B3,Hydrophis schistosus,65.64,53.09,21.7,25,3.3,10.02,7.46,2.62,2.8,9.48,6.42,4.32,27,7,20,Female,,
-194,03-04-2018,HSMT131,HSMT131.A1,Hydrophis schistosus,54.87,29.36,28.8,32.4,3.6,11.24,8.66,2.09,2.42,8.49,6.71,7.31,22,18,4,Female,,White umbelical cords
-195,03-04-2018,HSMT131,HSMT131.A2,Hydrophis schistosus,50.16,36.83,24,30.6,6.6,11.66,7.42,3.16,3.36,9.78,5.84,5.94,21,17,4,Female,,White umbelical cords
-196,03-04-2018,HSMT131,HSMT131.A3,Hydrophis schistosus,55.26,39.04,24.9,29.1,4.2,10.83,5.43,2.71,2.86,8.67,3.74,7.39,22,20,2,Female,,White umbelical cords
-197,03-04-2018,HSMT131,HSMT131.A4,Hydrophis schistosus,49.63,37.04,25.5,29.8,4.3,10.82,5.57,2.96,1.96,8.58,4.35,4.58,21,16,5,Female,,White umbelical cords
-198,03-04-2018,HSMT131,HSMT131.A5,Hydrophis schistosus,55.87,35.33,25.5,32.3,6.8,11.38,9.28,2.84,3.16,10.34,6.72,6.72,23,19,4,Female,,White umbelical cords
-199,03-04-2018,HSMT131,HSMT131.A6,Hydrophis schistosus,73.98,31.72,25.8,33.1,7.3,11,6.12,2.74,1.75,8.17,5.4,4.98,23,18,5,Female,,White umbelical cords
-200,03-04-2018,HSMT131,HSMT131.B1,Hydrophis schistosus,58.89,40.18,24.7,30.5,5.8,11.56,7,2.82,3.3,9.6,6.2,8.32,23,16,7,Female,,White umbelical cords
-201,08-04-2018,HSDB184,HSDB184.1,Hydrophis schistosus,,,,,,,,,,,,,,17,,Male,SD IMG 140608,"Ske gave birth while under observation during the night; SVL, TL, etc. to be measured from photograph"
-202,10-04-2018,HSDB189,HSDB189.1,Hydrophis schistosus,,,28.5,31.5,3,,,,,,,,,15,,Female?,,
-203,10-04-2018,HSDB189,HSDB189.2,Hydrophis schistosus,,,27.5,30.8,3.3,,,,,,,,,13,,Female?,,
-204,10-04-2018,HSDB189,HSDB189.3,Hydrophis schistosus,,,28.5,31.5,3,,,,,,,,,13,,Female?,,
-205,10-04-2018,HSDB189,HSDB189.4,Hydrophis schistosus,,,30.4,33.3,2.9,,,,,,,,,15,,Female?,,
-206,10-04-2018,HSDB189,HSDB189.5,Hydrophis schistosus,,,28.5,31.5,3,,,,,,,,,13,,Female?,,Died?
-207,10-04-2018,HSDB189,HSDB189.6,Hydrophis schistosus,,,28.6,32.9,4.3,11.66,8.62,2.82,3.06,9.76,7.14,13.84,,15,,Female,,Still born
-208,09-05-2018,HSDB225,HSDB225.A1,Hydrophis schistosus,51,42.86,,,,,,,,,,,19,16,3,Female,,Sex to be reconfirmed
-209,09-05-2018,HSDB225,HSDB225.A2,Hydrophis schistosus,46.31,41.22,,,,,,,,,,,18,15,3,Female,,Sex to be reconfirmed
-210,09-05-2018,HSDB225,HSDB225.A3,Hydrophis schistosus,56.31,37.2,,,,,,,,,,,18,15,3,Female,,Sex to be reconfirmed
-211,09-05-2018,HSDB225,HSDB225.B1,Hydrophis schistosus,57.46,31.12,,,,,,,,,,,17,12,5,Female,,Sex to be reconfirmed
-212,09-05-2018,HSDB225,HSDB225.B2,Hydrophis schistosus,,,,,,,,,,,,,,14,,Female,,"Elongated in uterus, ready for borth?"
-213,18-11-2018,HSTR4047,HSTR4047.A1,Hydrophis schistosus,36.59,24.42,,,,,,,,,,,8,,,,,
-214,18-11-2018,HSTR4047,HSTR4047.A2,Hydrophis schistosus,34.3,24.43,,,,,,,,,,,9,,,,,
-215,18-11-2018,HSTR4047,HSTR4047.A3,Hydrophis schistosus,26.57,24.94,,,,,,,,,,,7,,,,,
-216,18-11-2018,HSTR4047,HSTR4047.A4,Hydrophis schistosus,33.87,24.81,,,,,,,,,,,8,,,,,
-217,18-11-2018,HSTR4047,HSTR4047.A5,Hydrophis schistosus,33.29,20.86,,,,,,,,,,,8,,,,,
-218,18-11-2018,HSTR4047,HSTR4047.A6,Hydrophis schistosus,39.38,17.37,,,,,,,,,,,8,,,,,
-219,18-11-2018,HSTR4047,HSTR4047.B1,Hydrophis schistosus,31.81,22.19,,,,,,,,,,,6,,,,,
-220,18-11-2018,HSTR4047,HSTR4047.B2,Hydrophis schistosus,30.36,25.6,,,,,,,,,,,8,,,,,
-221,18-11-2018,HSTR4047,HSTR4047.B3,Hydrophis schistosus,33.99,25.78,,,,,,,,,,,8,,,,,
-222,18-11-2018,HSTR4047,HSTR4047.B4,Hydrophis schistosus,33.34,23.88,,,,,,,,,,,7,,,,,
-223,18-11-2018,HSTR4047,HSTR4047.B5,Hydrophis schistosus,36.59,24.16,,,,,,,,,,,9,,,,,
-224,18-11-2018,HSTR4047,HSTR4047.B6,Hydrophis schistosus,27.57,23.86,,,,,,,,,,,9,,,,,
-225,22-11-2018,HSGN4026,HSGN4026.A1,Hydrophis schistosus,25.98,17.25,,,,,,,,,,,6,,,,,
-226,22-11-2018,HSGN4026,HSGN4026.A2,Hydrophis schistosus,27.51,19.86,,,,,,,,,,,6,,,,,
-227,22-11-2018,HSGN4026,HSGN4026.A3,Hydrophis schistosus,25.15,18.41,,,,,,,,,,,6,,,,,
-228,22-11-2018,HSGN4026,HSGN4026.A4,Hydrophis schistosus,27.85,19.92,,,,,,,,,,,6,,,,,
-229,22-11-2018,HSGN4026,HSGN4026.A5,Hydrophis schistosus,31.14,19.36,,,,,,,,,,,7,,,,,
-230,22-11-2018,HSGN4026,HSGN4026.A6,Hydrophis schistosus,29.36,18.86,,,,,,,,,,,7,,,,,
-231,22-11-2018,HSGN4026,HSGN4026.B1,Hydrophis schistosus,30.55,17.38,,,,,,,,,,,6,,,,,
-232,22-11-2018,HSGN4026,HSGN4026.B2,Hydrophis schistosus,27.13,19.35,,,,,,,,,,,6,,,,,
-233,22-11-2018,HSGN4026,HSGN4026.B3,Hydrophis schistosus,24.81,19.85,,,,,,,,,,,6,,,,,
-234,22-11-2018,HSGN4026,HSGN4026.B4,Hydrophis schistosus,26.73,18.36,,,,,,,,,,,6,,,,,
-235,22-11-2018,HSGN4026,HSGN4026.B5,Hydrophis schistosus,31.61,13.65,,,,,,,,,,,6,,,,,
+"Sr. No.","Date","Field Code","Embryo Code","Species","Egg Length (mm) ","Egg Width (mm) ","Snout to Vent (cm)","Body Length (cm)","Tail Length (cm)","Head Length (mm)","Head Width (mm)","Snout to Nose (mm)","Nose to Eye (mm)","Gape (mm)","Neck Circumference (mm)","Body Circumference (mm)","Egg Weigth (g) ","Embryo Weight (g)","Yolk Weight (g)","Sex","Embryo","Photo No.","Remarks"
+103,"09-02-2018","HSMT46","HSMT46.B2","Hydrophis schistosus",37.74,35.85,,,,,,,,,,,11,0,11,,"Absent",,"Only yolk"
+104,"09-02-2018","HSMT46","HSMT46.B3","Hydrophis schistosus",47.74,37.83,,,,,,,,,,,13,0,13,,"Absent",,"Only yolk"
+113,"09-02-2018","HSMT47","HSMT47.A7","Hydrophis schistosus",40.96,36.33,,,,,,,,,,,13,0,13,,"Absent",,"Only Yolk, Damaged + Delicate"
+56,"19-01-2018","HSMT03","HSMT03.B5","Hydrophis schistosus",25.59,26.65,,,,,,,,,,,10,0,10,,"Absent",,"Unfertilized"
+165,"22-02-2018","HSDB115","HSDB115.08","Hydrophis schistosus",,,,,,,,,,,,,11,,,,"Absent",,"Unfertilized"
+155,"19-02-2018","HSDB112","HSDB112.B3","Hydrophis schistosus",35.39,31.74,,,,,,,,,,,12,0,12,,"Present",,"Broken"
+111,"09-02-2018","HSMT47","HSMT47.A5","Hydrophis schistosus",39.76,37.5,,,,,,,,,,,11,0,11,,"Present",,"Damaged + Delicate"
+112,"09-02-2018","HSMT47","HSMT47.A6","Hydrophis schistosus",40.56,38.88,,,,,,,,,,,11,0,11,,"Present",,"Damaged + Delicate"
+114,"09-02-2018","HSMT47","HSMT47.A8","Hydrophis schistosus",36.8,31.32,,,,,,,,,,,9,0,9,,"Present",,"Damaged + Delicate"
+116,"09-02-2018","HSMT47","HSMT47.B1","Hydrophis schistosus",45.56,31.7,,,,,,,,,,,12,0,12,,"Present",,"Damaged + Delicate"
+117,"09-02-2018","HSMT47","HSMT47.B2","Hydrophis schistosus",45.67,29.01,,,,,,,,,,,12,0,12,,"Present",,"Damaged + Delicate"
+119,"09-02-2018","HSMT47","HSMT47.B4","Hydrophis schistosus",,,,,,,,,,,,,,,,,"Present",,"Damaged + Delicate"
+206,"10-04-2018","HSDB189","HSDB189.5","Hydrophis schistosus",,,28.5,31.5,3,,,,,,,,,13,,"Female?","Present",,"Died?"
+212,"09-05-2018","HSDB225","HSDB225.B2","Hydrophis schistosus",,,,,,,,,,,,,,14,,"Female","Present",,"Elongated in uterus, ready for borth?"
+179,"31-03-2018","HSMT111","HSMT111.B1","Hydrophis schistosus",,,19.8,23.7,3.9,11.07,6.34,3.47,1.82,6.72,4.84,11.48,17,16,1,"Female","Present",,"Embryo sac undivided"
+180,"31-03-2018","HSMT111","HSMT111.B2","Hydrophis schistosus",,,21.3,24.7,3.4,11.12,7.09,2.17,1.5,9.45,5.5,15.5,17,16,1,"Female","Present",,"Embryo sac undivided"
+181,"31-03-2018","HSMT111","HSMT111.B3","Hydrophis schistosus",,,24.7,28.2,3.5,10.18,8.04,2.8,2.6,8.26,6.3,7.52,16,14,2,"Male","Present","Female","Embryo sac undivided"
+90,"09-02-2018","HSMT45","HSMT45.B1","Hydrophis schistosus",,,,,,,,,,,,,13,0,13,,"Present",,"HSMT 45. B1: Broken Tail"
+87,"09-02-2018","HSMT45","HSMT45.A5","Hydrophis schistosus",37.81,31.2,,,,,,,,,,,14,0,14,,"Present",,"In Catalogue"
+124,"12-02-2018","HSMT48","HSMT48.A5","Hydrophis schistosus",47.4,34.41,,,,,,,,,,,20,4,16,"Male","Present",,"Not in Catalogue"
+128,"12-02-2018","HSMT48","HSMT48.B4","Hydrophis schistosus",44.99,35.58,,,,,,,,,,,18,4,14,"Male","Present",,"Not in Catalogue"
+174,"12-03-2018","HSDB151","HSDB151.B4","Hydrophis schistosus",43.88,35.91,,,,,,,,,,,15,0,15,"Male","Present",,"Not in Catalogue"
+175,"12-03-2018","HSDB151","HSDB151.B5","Hydrophis schistosus",51.18,33.25,,,,,,,,,,,16,0,16,"Female","Present",,"Not in Catalogue"
+152,"19-02-2018","HSDB112","HSDB112.A9","Hydrophis schistosus",36,31.74,,,,,,,,,,,13,0,13,,"Present",,"Nothing In Catalogue"
+157,"19-02-2018","HSDB112","HSDB112.B5","Hydrophis schistosus",36.02,34.07,,,,,,,,,,,6,0,6,,"Present",,"Nothing in Catalogue"
+125,"12-02-2018","HSMT48","HSMT48.B1","Hydrophis schistosus",30.58,25.92,15,17.5,2.5,7.06,4.02,1.88,2.3,7.5,3.5,3.42,9,3,6,"Female","Present",,"Ruptured"
+166,"12-03-2018","HSDB151","HSDB151.A1","Hydrophis schistosus",58.14,49.61,14,15.6,1.6,7.52,4.78,1.75,1.05,6.07,2.74,3.92,13,3,10,"Male","Present",,"Ruptured"
+182,"31-03-2018","HSMT113","HSMT113.A1","Hydrophis schistosus",,,24.7,28,3.3,10.5,7.7,2.8,3.08,9.74,6.4,6.94,18,13,5,"Male","Present",,"Ruptured"
+183,"31-03-2018","HSMT113","HSMT113.A2","Hydrophis schistosus",,,22.1,24.2,2.1,11.15,4.94,2.22,1.47,10.43,3.71,6.33,20,11,9,"Male","Present",,"Ruptured"
+184,"31-03-2018","HSMT113","HSMT113.A3","Hydrophis schistosus",,,20.5,24.5,4,10.28,8.2,2.18,3,8.08,6.76,7.7,21,12,9,"Female","Present",,"Ruptured"
+185,"31-03-2018","HSMT113","HSMT113.A4","Hydrophis schistosus",,,,,,,,,,,,,16,12,4,"Male","Present",,"Ruptured"
+186,"31-03-2018","HSMT113","HSMT113.B1","Hydrophis schistosus",,,21,26.2,5.2,10.14,7.72,2.2,2.54,8.52,7.92,10.6,18,12,6,"Female","Present",,"Ruptured"
+190,"03-04-2018","HSMT130","HSMT130.A3","Hydrophis schistosus",,,20,23,3,9.22,5.68,2.12,2.66,7.9,4.86,5.2,15,7,8,"Female","Present",,"Ruptured"
+118,"09-02-2018","HSMT47","HSMT47.B3","Hydrophis schistosus",,,,,,,,,,,,,,,,,"Present",,"Ruptured, Damaged + Delicate"
+208,"09-05-2018","HSDB225","HSDB225.A1","Hydrophis schistosus",51,42.86,,,,,,,,,,,19,16,3,"Female","Present",,"Sex to be reconfirmed"
+209,"09-05-2018","HSDB225","HSDB225.A2","Hydrophis schistosus",46.31,41.22,,,,,,,,,,,18,15,3,"Female","Present",,"Sex to be reconfirmed"
+210,"09-05-2018","HSDB225","HSDB225.A3","Hydrophis schistosus",56.31,37.2,,,,,,,,,,,18,15,3,"Female","Present",,"Sex to be reconfirmed"
+211,"09-05-2018","HSDB225","HSDB225.B1","Hydrophis schistosus",57.46,31.12,,,,,,,,,,,17,12,5,"Female","Present",,"Sex to be reconfirmed"
+201,"08-04-2018","HSDB184","HSDB184.1","Hydrophis schistosus",,,,,,,,,,,,,,17,,"Male","Present","SD IMG 140608","Ske gave birth while under observation during the night; SVL, TL, etc. to be measured from photograph"
+49,"19-01-2018","HSMT03","HSMT03.B1","Hydrophis schistosus",35,28.23,,,,,,,,,,,11,0,11,,"Present",,"Specimen Broken"
+151,"19-02-2018","HSDB112","HSDB112.A8","Hydrophis schistosus",25.18,29.22,,,,,,,,,,,6,0,6,"Male","Present",,"Specimen Broken on Top"
+207,"10-04-2018","HSDB189","HSDB189.6","Hydrophis schistosus",,,28.6,32.9,4.3,11.66,8.62,2.82,3.06,9.76,7.14,13.84,,15,,"Female","Present",,"Still born"
+141,"12-02-2018","HSMT66","HSMT66.B1","Hydrophis schistosus",49.2,34.56,,,,,,,,,,,16,0,16,"Female","Present",,"Tail Broken"
+144,"19-02-2018","HSDB112","HSDB112.A1","Hydrophis schistosus",25.52,31.37,,,,,,,,,,,10,0,10,"Female","Present",,"Tail Cut "
+139,"12-02-2018","HSMT66","HSMT66.A2","Hydrophis schistosus",,,,,,,,,,,,,9,0,9,"Female","Present",,"Tail Missing"
+52,"19-01-2018","HSMT03","HSMT03.B12","Hydrophis schistosus",,,,,,,,,,,,,,,,,"Present",,"Too small + Delicate --> Not in Catalogue?"
+41,"19-01-2018","HSMT03","HSMT03.A1","Hydrophis schistosus",33.69,27.7,,,,,,,,,,,11,0,11,,"Present",,"too small to measure"
+194,"03-04-2018","HSMT131","HSMT131.A1","Hydrophis schistosus",54.87,29.36,28.8,32.4,3.6,11.24,8.66,2.09,2.42,8.49,6.71,7.31,22,18,4,"Female","Present",,"White umbelical cords"
+195,"03-04-2018","HSMT131","HSMT131.A2","Hydrophis schistosus",50.16,36.83,24,30.6,6.6,11.66,7.42,3.16,3.36,9.78,5.84,5.94,21,17,4,"Female","Present",,"White umbelical cords"
+196,"03-04-2018","HSMT131","HSMT131.A3","Hydrophis schistosus",55.26,39.04,24.9,29.1,4.2,10.83,5.43,2.71,2.86,8.67,3.74,7.39,22,20,2,"Female","Present",,"White umbelical cords"
+197,"03-04-2018","HSMT131","HSMT131.A4","Hydrophis schistosus",49.63,37.04,25.5,29.8,4.3,10.82,5.57,2.96,1.96,8.58,4.35,4.58,21,16,5,"Female","Present",,"White umbelical cords"
+198,"03-04-2018","HSMT131","HSMT131.A5","Hydrophis schistosus",55.87,35.33,25.5,32.3,6.8,11.38,9.28,2.84,3.16,10.34,6.72,6.72,23,19,4,"Female","Present",,"White umbelical cords"
+199,"03-04-2018","HSMT131","HSMT131.A6","Hydrophis schistosus",73.98,31.72,25.8,33.1,7.3,11,6.12,2.74,1.75,8.17,5.4,4.98,23,18,5,"Female","Present",,"White umbelical cords"
+200,"03-04-2018","HSMT131","HSMT131.B1","Hydrophis schistosus",58.89,40.18,24.7,30.5,5.8,11.56,7,2.82,3.3,9.6,6.2,8.32,23,16,7,"Female","Present",,"White umbelical cords"
+1,"03-02-2016","CESS 2001","CESS 2001.A1","Hydrophis schistosus",,,11.1,,1.9,,,,,,,,,,,"Male","Present",,
+2,"03-02-2016","CESS 2001","CESS 2001.A2","Hydrophis schistosus",,,11.8,,1.9,,,,,,,,,,,"Male","Present",,
+3,"03-02-2016","CESS 2001","CESS 2001.A3","Hydrophis schistosus",,,13.4,,2.3,,,,,,,,,,,"Male","Present",,
+4,"03-02-2016","CESS 2001","CESS 2001.A4","Hydrophis schistosus",,,9,,1.6,,,,,,,,,,,"Male","Present",,
+5,"12-03-2017","HSGR02","HSGR02.A1","Hydrophis schistosus",,,18.5,,3.1,0.963,0.506,,0.2,0.82,0.476,,,,,"Female","Present",,
+6,"12-03-2017","HSGR02","HSGR02.A2","Hydrophis schistosus",,,19,,3.2,0.886,0.478,,0.259,0.671,0.4,,,,,"Female","Present",,
+7,"12-03-2017","HSGR02","HSGR02.A3","Hydrophis schistosus",,,20,,3.2,0.829,0.53,,0.313,0.79,0.531,,,,,"Female","Present",,
+8,"12-03-2017","HSGR02","HSGR02.A4","Hydrophis schistosus",,,20,,3.2,0.855,0.403,,0.278,0.79,0.362,,,,,"Female","Present",,
+9,"12-03-2017","HSGR02","HSGR02.A5","Hydrophis schistosus",,,19.5,,3.2,0.872,0.399,,0.236,0.785,0.373,,,,,"Female","Present",,
+10,"12-03-2017","HSGR02","HSGR02.A6","Hydrophis schistosus",,,18,,3.1,0.935,0.482,,0.325,0.78,0.402,,,,,"Male","Present",,
+11,"12-03-2017","HSGR02","HSGR02.A7","Hydrophis schistosus",,,18.5,,3.3,0.827,0.45,,0.279,0.82,0.432,,,,,"Male","Present",,
+12,"12-03-2017","HSGR02","HSGR02.A8","Hydrophis schistosus",,,19.7,,3.5,0.873,0.464,,0.317,0.744,0.352,,,,,"Male","Present",,
+13,"12-03-2017","HSGR02","HSGR02.A9","Hydrophis schistosus",,,20,,3.6,0.897,0.434,,0.207,0.667,0.369,,,,,"Male","Present",,
+14,"12-03-2017","HSGR02","HSGR02.A10","Hydrophis schistosus",,,19.4,,3.4,0.816,0.459,,0.29,0.756,0.418,,,,,"Male","Present",,
+15,"12-03-2017","HSGR02","HSGR02.A11","Hydrophis schistosus",,,20,,3.5,0.897,0.434,,0.31,0.754,0.375,,,,,"Male","Present",,
+16,"12-03-2017","HSGR02","HSGR02.A12","Hydrophis schistosus",,,20.2,,3.5,0.823,0.501,,0.21,0.624,0.399,,,,,"Male","Present",,
+17,"20-03-2017","HSGR03","HSGR03.A1","Hydrophis schistosus",,,15.1,,1.8,0.939,0.511,,0.232,0.754,0.537,,,,,"Female","Present",,
+18,"20-03-2017","HSGR03","HSGR03.A2","Hydrophis schistosus",,,15.6,,2.1,0.978,0.637,,0.284,0.69,0.358,,,,,"Male","Present",,
+19,"20-03-2017","HSGR03","HSGR03.A3","Hydrophis schistosus",,,15,,1.8,0.933,0.524,,0.282,0.78,0.432,,,,,"Male","Present",,
+20,"20-03-2017","HSGR03","HSGR03.A4","Hydrophis schistosus",,,16.2,,2.2,0.807,0.447,,0.255,0.534,0.312,,,,,"Male","Present",,
+21,"20-03-2017","HSGR03","HSGR03.A5","Hydrophis schistosus",,,17,,2.5,0.818,0.447,,0.24,0.685,0.372,,,,,"Male","Present",,
+22,"20-03-2017","HSGR03","HSGR03.A6","Hydrophis schistosus",,,16.7,,2.4,0.882,0.493,,0.243,0.601,0.401,,,,,"Male","Present",,
+23,"20-03-2017","HSGR03","HSGR03.A7","Hydrophis schistosus",,,14.9,,3.8,0.848,0.504,,0.206,0.575,0.326,,,,,"Male","Present",,
+24,"20-03-2017","HSGR03","HSGR03.A8","Hydrophis schistosus",,,16.5,,2.1,0.894,0.58,,0.29,0.753,0.282,,,,,"Male","Present",,
+25,"20-03-2017","HSGR03","HSGR03.A9","Hydrophis schistosus",,,15.5,,2,0.863,0.507,,0.227,0.746,0.319,,,,,"Male","Present",,
+26,"21-03-2017","HSGR04","HSGR04.A1","Hydrophis schistosus",,,11.7,,1.2,,,,0.233,0.539,,,,,,"Female","Present",,
+27,"21-03-2017","HSGR04","HSGR04.A2","Hydrophis schistosus",,,11.5,,1.5,,,,0.215,0.58,,,,,,"Male","Present",,
+28,"21-03-2017","HSGR04","HSGR04.A3","Hydrophis schistosus",,,11.2,,1.2,,,,0.219,0.56,,,,,,"Male","Present",,
+29,"21-03-2017","HSGR04","HSGR04.A4","Hydrophis schistosus",,,11.5,,1.2,,,,0.223,0.559,,,,,,"Male","Present",,
+30,"21-03-2017","HSGR05","HSGR05.A1","Hydrophis schistosus",,,15.5,,1.5,0.808,0.497,,0.213,0.715,0.496,,,,,"Female","Present",,
+31,"21-03-2017","HSGR05","HSGR05.A2","Hydrophis schistosus",,,12.5,,1.7,0.8,0.494,,0.24,0.701,0.403,,,,,"Male","Present",,
+32,"21-03-2017","HSGR05","HSGR05.A3","Hydrophis schistosus",,,16.2,,2,0.8,0.439,,0.45,0.672,0.446,,,,,"Male","Present",,
+33,"21-03-2017","HSGR05","HSGR05.A4","Hydrophis schistosus",,,16,,2,0.827,0.434,,0.208,0.697,0.413,,,,,"Male","Present",,
+34,"21-03-2017","HSGR05","HSGR05.A5","Hydrophis schistosus",,,14.5,,1.5,0.948,0.541,,0.24,0.743,0.326,,,,,"Female","Present",,
+35,"21-03-2017","HSGR05","HSGR05.A6","Hydrophis schistosus",,,16.2,,2.2,0.966,0.541,,0.232,0.741,0.19,,,,,"Male","Present",,
+36,"21-03-2017","HSGR05","HSGR05.A7","Hydrophis schistosus",,,14,,2,0.894,0.506,,0.228,0.597,0.244,,,,,"Female","Present",,
+37,"10-11-2017","CESS 2087","CESS 2087.A1","Hyrdrophis viperinus",,,24,,3,1.292,0.786,,0.48,1.12,0.588,,4.5,19.7,,"Female","Present",,
+38,"10-11-2017","CESS 2087","CESS 2087.A2","Hyrdrophis viperinus",5.648,2.018,26.7,,2.6,1.184,0.754,,0.404,11.02,0.536,,5.83,19.7,,"Female","Present",,
+39,"10-11-2017","CESS 2087","CESS 2087.A3","Hyrdrophis viperinus",4.836,2.378,26.5,,2.8,1.288,0.762,,0.412,0.808,0.562,,4.23,20.44,,"Female","Present",,
+40,"10-11-2017","CESS 2087","CESS 2087.A4","Hyrdrophis viperinus",2.226,5.022,24.4,,2.7,1.252,7.72,,0.49,1.172,0.608,,6.32,20.14,,"Female","Present",,
+42,"19-01-2018","HSMT03","HSMT03.A2","Hydrophis schistosus",30.34,22.84,,,,,,,,,,,11,0,11,,"Present",,
+43,"19-01-2018","HSMT03","HSMT03.A3","Hydrophis schistosus",28.27,20.01,,,,,,,,,,,11,0,11,,"Present",,
+44,"19-01-2018","HSMT03","HSMT03.A4","Hydrophis schistosus",32.23,20.38,,,,,,,,,,,10,0,10,,"Present",,
+45,"19-01-2018","HSMT03","HSMT03.A5","Hydrophis schistosus",32.23,19.63,,,,,,,,,,,10,0,10,,"Present",,
+46,"19-01-2018","HSMT03","HSMT03.A6","Hydrophis schistosus",35.57,22.66,,,,,,,,,,,10,0,10,,"Present",,
+47,"19-01-2018","HSMT03","HSMT03.A7","Hydrophis schistosus",31.68,25.27,,,,,,,,,,,11,0,11,,"Present",,
+48,"19-01-2018","HSMT03","HSMT03.A8","Hydrophis schistosus",27.55,21.82,,,,,,,,,,,11,0,11,,"Present",,
+50,"19-01-2018","HSMT03","HSMT03.B10","Hydrophis schistosus",27.06,24.79,,,,,,,,,,,11,0,11,,"Present",,
+51,"19-01-2018","HSMT03","HSMT03.B11","Hydrophis schistosus",23.25,29.21,,,,,,,,,,,11,0,11,,"Present",,
+53,"19-01-2018","HSMT03","HSMT03.B2","Hydrophis schistosus",29.93,18.31,,,,,,,,,,,11,0,11,,"Present",,
+54,"19-01-2018","HSMT03","HSMT03.B3","Hydrophis schistosus",28.55,22.82,,,,,,,,,,,12,0,12,,"Present",,
+55,"19-01-2018","HSMT03","HSMT03.B4","Hydrophis schistosus",28.18,21.91,,,,,,,,,,,11,0,11,,"Present",,
+57,"19-01-2018","HSMT03","HSMT03.B6","Hydrophis schistosus",28.25,25.52,,,,,,,,,,,10,0,10,,"Present",,
+58,"19-01-2018","HSMT03","HSMT03.B7","Hydrophis schistosus",31.63,23.65,,,,,,,,,,,11,0,11,,"Present",,
+59,"19-01-2018","HSMT03","HSMT03.B8","Hydrophis schistosus",30.03,24.33,,,,,,,,,,,11,0,11,,"Present",,
+60,"19-01-2018","HSMT03","HSMT03.B9","Hydrophis schistosus",28.74,22.72,,,,,,,,,,,10,0,10,,"Present",,
+61,"05-02-2018","HSMT18","HSMT18.A1","Hydrophis schistosus",47.19,37.72,12.5,14.5,2,6.78,5.38,1.88,2.62,6.9,3.84,3.8,19,3,16,"Female","Present",,
+62,"05-02-2018","HSMT18","HSMT18.A2","Hydrophis schistosus",36.98,37.72,13.2,14.4,1.2,6.34,5.56,2.2,2.5,7.02,4.28,3.74,17,3,14,"Female","Present",,
+63,"05-02-2018","HSMT18","HSMT18.A3","Hydrophis schistosus",37.82,37.68,12,13.4,1.4,5.37,3.69,1.58,1.07,5.86,1.69,2.31,18,3,15,"Female","Present",,
+64,"05-02-2018","HSMT18","HSMT18.A4","Hydrophis schistosus",33.18,36.5,13.7,15,1.3,7.62,4.62,1.78,2.46,6.52,4.22,4.56,16,3,13,"Male","Present",,
+65,"05-02-2018","HSMT18","HSMT18.A5","Hydrophis schistosus",36.52,40.67,11.8,13.5,1.7,4.96,3.36,2.28,1.31,6.21,1.7,1.92,16,3,13,"Female","Present",,
+66,"05-02-2018","HSMT18","HSMT18.A6","Hydrophis schistosus",31.62,42.54,12.6,14.4,1.8,6.6,4,1.98,2.52,7.22,3.3,3.9,16,3,13,"Male","Present",,
+67,"05-02-2018","HSMT18","HSMT18.B1","Hydrophis schistosus",42.46,35.83,11.4,14.6,3.2,6.01,3.81,2.32,1.36,5.77,3.23,3.27,17,3,14,"Male","Present",,
+68,"05-02-2018","HSMT18","HSMT18.B2","Hydrophis schistosus",31.48,43.9,11.3,14.4,3.1,5.95,3.9,1.81,1.33,6.68,2.24,3.64,17,3,14,"Female","Present",,
+69,"05-02-2018","HSMT18","HSMT18.B3","Hydrophis schistosus",37.43,36.62,12.45,14.2,1.75,6.185,3.35,1.595,2.25,6.225,3.055,2.955,15,3,12,"Female","Present",,
+70,"05-02-2018","HSMT18","HSMT18.B4","Hydrophis schistosus",36.19,39.87,11.9,13.8,1.9,5.73,4.58,1.61,1.59,6.18,2.86,1.98,15,3,12,"Female","Present",,
+71,"06-02-2018","HSDB100","HSDB100.A1","Hydrophis schistosus",54.55,38.16,16.6,19.9,3.3,8.51,3.86,2.08,0.96,6.59,3.78,7.34,21,7,14,"Female","Present",,
+72,"06-02-2018","HSDB100","HSDB100.A2","Hydrophis schistosus",42.4,32.07,16.6,18.8,2.2,8.5,4.82,1.57,1.29,7.11,3.84,5.35,17,7,10,"Female","Present",,
+73,"06-02-2018","HSDB100","HSDB100.A3","Hydrophis schistosus",54.34,31.42,17.4,19.6,2.2,8.87,6.98,2.28,1.62,7.84,3.7,5.62,22,7,15,"Female","Present",,
+74,"06-02-2018","HSDB100","HSDB100.A4","Hydrophis schistosus",47.68,38.94,19.5,21.5,2,10.02,6.26,1.96,2.66,7.7,4.18,7.62,18,7,11,"Female","Present",,
+75,"06-02-2018","HSDB100","HSDB100.B1","Hydrophis schistosus",60.63,35.47,17.6,21.5,3.9,8.74,6.13,2.04,1.14,7.68,3.21,7.18,21,8,13,"Female","Present",,
+76,"06-02-2018","HSDB100","HSDB100.B2","Hydrophis schistosus",45.75,36.8,16.2,20.5,4.3,8.78,5.88,2.2,2.68,7.76,4.92,6.92,19,6,13,"Male","Present",,
+77,"06-02-2018","HSDB100","HSDB100.B3","Hydrophis schistosus",45.68,33.79,20,22,2,8.5,6.58,2.08,2.18,7.7,4.58,5.18,20,6,14,"Male","Present",,
+78,"09-02-2018","HSMT44","HSMT44.A1","Hydrophis schistosus",,,12,13.1,1.1,5.37,3.24,1.17,0.7,4.38,1.47,1.7,10,0,10,"Female","Present","Male ",
+79,"09-02-2018","HSMT44","HSMT44.A2","Hydrophis schistosus",,,10.4,11.6,1.2,5.73,3.59,1.33,0.76,4.19,1.23,1.32,10,0,10,"Male","Present",,
+80,"09-02-2018","HSMT44","HSMT44.A3","Hydrophis schistosus",52.49,33.23,12.7,13.5,0.8,5.36,4.5,1.74,1.98,5.62,3.5,3.12,10,0,10,"Male","Present",,
+81,"09-02-2018","HSMT44","HSMT44.A4","Hydrophis schistosus",49.97,33.72,10.2,11.9,1.7,5.14,3.11,1.55,1.5,3.71,1.87,1.8,10,0,10,"Female","Present",,
+82,"09-02-2018","HSMT44","HSMT44.A5","Hydrophis schistosus",49.03,31.19,10.8,11.2,0.4,5.72,4.14,1.76,2.2,5.46,2.9,2.64,10,0,10,"Female","Present",,
+83,"09-02-2018","HSMT45","HSMT45.A1","Hydrophis schistosus",43.15,36.18,,,,,,,,,,,15,0,15,,"Present",,
+84,"09-02-2018","HSMT45","HSMT45.A2","Hydrophis schistosus",36.83,36.83,,,,,,,,,,,14,0,14,,"Present",,
+85,"09-02-2018","HSMT45","HSMT45.A3","Hydrophis schistosus",36.76,35.01,,,,,,,,,,,15,0,15,,"Present",,
+86,"09-02-2018","HSMT45","HSMT45.A4","Hydrophis schistosus",40.47,30.5,,,,,,,,,,,16,0,16,,"Present",,
+88,"09-02-2018","HSMT45","HSMT45.A6","Hydrophis schistosus",35.58,35.58,,,,,,,,,,,16,0,16,,"Present",,
+89,"09-02-2018","HSMT45","HSMT45.A7","Hydrophis schistosus",41.85,44.47,,,,,,,,,,,15,0,15,,"Present",,
+91,"09-02-2018","HSMT45","HSMT45.B2","Hydrophis schistosus",,,,8.5,8.5,4.92,3.52,1.22,1.56,3.62,2.82,1.5,14,0,14,"Female","Present",,
+92,"09-02-2018","HSMT45","HSMT45.B3","Hydrophis schistosus",,,7.1,7.6,0.5,5.52,2.82,1.47,0.66,2.38,1.9,0.78,15,0,15,"Male","Present",,
+93,"09-02-2018","HSMT45","HSMT45.B4","Hydrophis schistosus",,,7.3,8,0.7,5.6,4.34,1.26,1.72,4.46,2.64,3.18,15,0,15,"Male","Present",,
+94,"09-02-2018","HSMT45","HSMT45.B5","Hydrophis schistosus",,,6.3,7,0.7,4.48,3,1.64,1.86,3.4,1.88,2.16,13,0,13,"Female","Present",,
+95,"09-02-2018","HSMT46","HSMT46.A1","Hydrophis schistosus",49.42,41.9,,,,,,,,,,,16,0,16,"Male","Present",,
+96,"09-02-2018","HSMT46","HSMT46.A2","Hydrophis schistosus",50.49,45.11,,,,,,,,,,,18,0,18,"Male","Present",,
+97,"09-02-2018","HSMT46","HSMT46.A3","Hydrophis schistosus",45.2,45.82,,,,,,,,,,,16,0,16,"Male","Present",,
+98,"09-02-2018","HSMT46","HSMT46.A4","Hydrophis schistosus",46.66,46.07,,,,,,,,,,,17,0,17,"Female","Present",,
+99,"09-02-2018","HSMT46","HSMT46.A5","Hydrophis schistosus",47.77,46.22,,,,,,,,,,,16,0,16,"Male","Present",,
+100,"09-02-2018","HSMT46","HSMT46.A6","Hydrophis schistosus",47.26,44.19,,,,,,,,,,,15,0,15,"Female","Present",,
+101,"09-02-2018","HSMT46","HSMT46.A7","Hydrophis schistosus",50.05,45.18,,,,,,,,,,,15,0,15,"Female","Present",,
+102,"09-02-2018","HSMT46","HSMT46.B1","Hydrophis schistosus",51.06,45.08,,,,,,,,,,,16,0,16,"Female","Present",,
+105,"09-02-2018","HSMT47","HSMT47.A1","Hydrophis schistosus",,,,,,,,,,,,,5,0,5,"Male","Present",,
+106,"09-02-2018","HSMT47","HSMT47.A10","Hydrophis schistosus",40.8,41.56,,,,,,,,,,,12,0,12,,"Present",,
+107,"09-02-2018","HSMT47","HSMT47.A11","Hydrophis schistosus",39.58,36.79,,,,,,,,,,,13,0,13,,"Present",,
+108,"09-02-2018","HSMT47","HSMT47.A2","Hydrophis schistosus",45.17,38.89,,,,,,,,,,,13,0,13,"Female","Present",,
+109,"09-02-2018","HSMT47","HSMT47.A3","Hydrophis schistosus",42.67,38.83,,,,,,,,,,,14,0,14,"Male","Present",,
+110,"09-02-2018","HSMT47","HSMT47.A4","Hydrophis schistosus",41.86,36.53,,,,,,,,,,,11,0,11,"Male","Present",,
+115,"09-02-2018","HSMT47","HSMT47.A9","Hydrophis schistosus",41.56,35.55,,,,,,,,,,,12,0,12,,"Present",,
+120,"12-02-2018","HSMT48","HSMT48.A1","Hydrophis schistosus",,,16,18.2,2.2,6.14,5.6,2.08,2.34,7.26,4.64,3.28,13,3,10,"Female","Present","Male ",
+121,"12-02-2018","HSMT48","HSMT48.A2","Hydrophis schistosus",39.41,35.04,15.7,17.5,1.8,6.54,5.18,1.82,2.44,7.52,3.3,4.44,16,4,12,"Male","Present",,
+122,"12-02-2018","HSMT48","HSMT48.A3","Hydrophis schistosus",35.57,34.14,15.7,17.5,1.8,6.5,4.18,1.82,2.28,7.58,3.5,3.18,16,3,13,"Male","Present","Female",
+123,"12-02-2018","HSMT48","HSMT48.A4","Hydrophis schistosus",34.47,35.87,16.3,18.5,2.2,6.1,4.88,2.14,2.08,7.28,3.84,3.18,16,4,12,"Male","Present",,
+126,"12-02-2018","HSMT48","HSMT48.B2","Hydrophis schistosus",42.27,35.59,16.6,17.6,1,5.41,4.08,1.53,1.79,6.19,3.17,3.09,18,4,14,"Female","Present","Male ",
+127,"12-02-2018","HSMT48","HSMT48.B3","Hydrophis schistosus",38.13,36.4,16.3,18.9,2.6,6.92,5.26,2,2.82,6.9,2.7,3.84,15,4,11,"Male","Present",,
+129,"12-02-2018","HSMT55","HSMT55.A1","Hydrophis schistosus",48.6,32.02,16.7,18.5,1.8,7.14,5.2,2.22,2.34,7.62,4.92,2.68,18,4,14,"Male","Present",,
+130,"12-02-2018","HSMT55","HSMT55.A2","Hydrophis schistosus",49.12,32.67,16.2,18.5,2.3,7,5.5,1.96,2.54,7.8,3.66,3.52,17,3,14,"Male","Present",,
+131,"12-02-2018","HSMT55","HSMT55.A3","Hydrophis schistosus",40.97,38.62,16.2,18.5,2.3,6.82,5.52,2.22,2.52,7.3,3.78,3.72,17,4,13,"Male","Present",,
+132,"12-02-2018","HSMT55","HSMT55.A4","Hydrophis schistosus",38.11,40.22,15.7,17.9,2.2,7.06,3.98,1.75,1.39,6.6,3.14,1.95,15,4,11,"Female","Present","Male ",
+133,"12-02-2018","HSMT55","HSMT55.B1","Hydrophis schistosus",25.66,34.37,15.5,17.4,1.9,5.96,4.78,1.76,2,6.52,4.2,3.84,18,3,15,"Female","Present",,
+134,"12-02-2018","HSMT55","HSMT55.B2","Hydrophis schistosus",30.64,40.02,14.7,16.5,1.8,5.92,4.48,1.64,2,6.9,3.04,2.94,18,4,14,"Male","Present",,
+135,"12-02-2018","HSMT55","HSMT55.B3","Hydrophis schistosus",37.91,37.61,16.8,17.9,1.1,5.99,4.19,2.45,1.24,7.08,3.25,3.72,19,4,15,"Male","Present",,
+136,"12-02-2018","HSMT55","HSMT55.B4","Hydrophis schistosus",30.06,33.34,14.9,16.4,1.5,5.94,4.02,1.78,1.33,7.29,3.36,4.2,18,4,14,"Male","Present","Female",
+137,"12-02-2018","HSMT55","HSMT55.B5","Hydrophis schistosus",41.62,31,15.9,17.8,1.9,6.47,3.92,2.11,1.2,5.3,2.74,3.2,17,4,13,"Female","Present","Male ",
+138,"12-02-2018","HSMT66","HSMT66.A1","Hydrophis schistosus",49.25,38.25,,,,,,,,,,,10,0,10,"Female","Present",,
+140,"12-02-2018","HSMT66","HSMT66.A3","Hydrophis schistosus",,,,,,,,,,,,,13,0,13,"Male","Present",,
+142,"12-02-2018","HSMT66","HSMT66.B2","Hydrophis schistosus",47.3,29.36,,,,,,,,,,,13,0,13,"Female","Present",,
+143,"13-02-2018","HSMT55","HSMT55.A5","Hydrophis schistosus",,,15.2,17.8,2.6,7.17,4.13,2.24,1.91,7.01,2.1,3.02,,4,,"Female","Present",,
+145,"19-02-2018","HSDB112","HSDB112.A2","Hydrophis schistosus",31.3,32.3,,,,,,,,,,,13,0,13,"Female","Present",,
+146,"19-02-2018","HSDB112","HSDB112.A3","Hydrophis schistosus",31.86,33.4,,,,,,,,,,,14,0,14,"Female","Present",,
+147,"19-02-2018","HSDB112","HSDB112.A4","Hydrophis schistosus",32.88,33,,,,,,,,,,,13,0,13,"Female","Present",,
+148,"19-02-2018","HSDB112","HSDB112.A5","Hydrophis schistosus",33.78,32.82,,,,,,,,,,,13,0,13,,"Present",,
+149,"19-02-2018","HSDB112","HSDB112.A6","Hydrophis schistosus",32.64,32.76,,,,,,,,,,,12,0,12,"Male","Present",,
+150,"19-02-2018","HSDB112","HSDB112.A7","Hydrophis schistosus",34.93,34.33,,,,,,,,,,,13,0,13,"Female","Present",,
+153,"19-02-2018","HSDB112","HSDB112.B1","Hydrophis schistosus",36.58,31.82,,,,,,,,,,,12,0,12,"Female","Present",,
+154,"19-02-2018","HSDB112","HSDB112.B2","Hydrophis schistosus",34.64,30.12,,,,,,,,,,,12,0,12,"Female","Present",,
+156,"19-02-2018","HSDB112","HSDB112.B4","Hydrophis schistosus",34.93,34.1,,,,,,,,,,,11,0,11,"Male","Present",,
+158,"22-02-2018","HSDB115","HSDB115.01","Hydrophis schistosus",,,22.6,25.4,2.8,9.16,5.56,2.79,1.61,6.63,4.02,3.99,27,10,,"Male","Present",,
+159,"22-02-2018","HSDB115","HSDB115.02","Hydrophis schistosus",,,23,25,2,10.56,6.16,2.25,1.49,8.26,3.29,5.74,24,11,,"Female","Present",,
+160,"22-02-2018","HSDB115","HSDB115.03","Hydrophis schistosus",,,22.5,23.9,1.4,9.61,4.12,2.81,0.68,6.94,5.29,6.28,28,11,,"Male","Present",,
+161,"22-02-2018","HSDB115","HSDB115.04","Hydrophis schistosus",,,21.9,22.4,0.5,10.25,4.97,2.19,1.58,8.31,3.43,6.56,23,12,,"Male","Present",,
+162,"22-02-2018","HSDB115","HSDB115.05","Hydrophis schistosus",,,,,,,,,,,,,31,,,"Female","Present",,
+163,"22-02-2018","HSDB115","HSDB115.06","Hydrophis schistosus",,,,,,,,,,,,,23,,,"Male","Present",,
+164,"22-02-2018","HSDB115","HSDB115.07","Hydrophis schistosus",,,,,,,,,,,,,30,,,"Female","Present",,
+167,"12-03-2018","HSDB151","HSDB151.A2","Hydrophis schistosus",38.06,42.25,14.9,15.6,0.7,6.49,4.89,2.08,1.99,5.53,2.84,3.25,15,4,11,"Female","Present","Male ",
+168,"12-03-2018","HSDB151","HSDB151.A3","Hydrophis schistosus",48.86,41.55,13.8,15.5,1.7,6.7,4.98,2.33,1.65,5.9,2.38,3.86,15,3,12,"Female","Present",,
+169,"12-03-2018","HSDB151","HSDB151.A4","Hydrophis schistosus",,,14.5,16.6,2.1,7.6,4.5,2.11,1.28,6.82,3.01,4.08,,4,,"Male","Present",,
+170,"12-03-2018","HSDB151","HSDB151.A5","Hydrophis schistosus",,,15,16.5,1.5,7.24,5.74,1.74,2.08,6.54,3.78,3.32,,3,,"Male","Present",,
+171,"12-03-2018","HSDB151","HSDB151.B1","Hydrophis schistosus",49.28,36.27,15.4,17.2,1.8,6.64,6.16,2.06,3.38,7.08,4.32,3.54,17,3,14,"Male","Present","Female",
+172,"12-03-2018","HSDB151","HSDB151.B2","Hydrophis schistosus",40.27,32.47,13.9,16,2.1,6.43,4.7,2.1,1.43,7.21,2.46,2.74,15,3,12,"Male","Present",,
+173,"12-03-2018","HSDB151","HSDB151.B3","Hydrophis schistosus",40.32,35.39,14.6,16.6,2,6.44,4.18,1.74,1.37,7.43,2.82,2.62,15,3,12,"Male","Present","Female",
+176,"31-03-2018","HSMT111","HSMT111.A1","Hydrophis schistosus",55.18,34.08,23.6,25.9,2.3,10.36,7.49,2.17,1.53,8.37,5.24,11.37,21,15,6,"Female","Present",,
+177,"31-03-2018","HSMT111","HSMT111.A2","Hydrophis schistosus",56.22,37.3,25,28,3,10.4,7.54,2.32,2.68,9.08,5.7,10.38,21,17,4,"Male","Present","Female",
+178,"31-03-2018","HSMT111","HSMT111.A3","Hydrophis schistosus",65.79,33.69,23.3,25.6,2.3,11.41,7.16,2.7,2.27,8.88,6.53,12.69,22,19,3,"Female","Present",,
+187,"31-03-2018","HSMT110","HSMT110","Hydrophis schistosus",,,24.6,28.4,3.8,10.29,4.41,2.74,1.65,8.49,4.05,4.82,,18,,"Female","Present",,
+188,"03-04-2018","HSMT130","HSMT130.A1","Hydrophis schistosus",54.54,45.39,19.8,21.8,2,10.05,5.55,2.3,1.5,7.94,4.47,6.67,22,8,14,"Female","Present",,
+189,"03-04-2018","HSMT130","HSMT130.A2","Hydrophis schistosus",73.9,42.46,20.1,23.2,3.1,8.96,4.87,2.5,1.55,8.29,4.03,4.77,26,8,18,"Female","Present",,
+191,"03-04-2018","HSMT130","HSMT130.B1","Hydrophis schistosus",72.13,50.57,19.9,23,3.1,9.15,6.45,2.19,2.2,6.17,2.5,5.4,26,8,18,"Female","Present",,
+192,"03-04-2018","HSMT130","HSMT130.B2","Hydrophis schistosus",63.17,51.08,21.5,24.5,3,9.72,7.7,2.2,2.84,8.94,5.88,4.6,27,8,19,"Female","Present",,
+193,"03-04-2018","HSMT130","HSMT130.B3","Hydrophis schistosus",65.64,53.09,21.7,25,3.3,10.02,7.46,2.62,2.8,9.48,6.42,4.32,27,7,20,"Female","Present",,
+202,"10-04-2018","HSDB189","HSDB189.1","Hydrophis schistosus",,,28.5,31.5,3,,,,,,,,,15,,"Female?","Present",,
+203,"10-04-2018","HSDB189","HSDB189.2","Hydrophis schistosus",,,27.5,30.8,3.3,,,,,,,,,13,,"Female?","Present",,
+204,"10-04-2018","HSDB189","HSDB189.3","Hydrophis schistosus",,,28.5,31.5,3,,,,,,,,,13,,"Female?","Present",,
+205,"10-04-2018","HSDB189","HSDB189.4","Hydrophis schistosus",,,30.4,33.3,2.9,,,,,,,,,15,,"Female?","Present",,
+213,"18-11-2018","HSTR4047","HSTR4047.A1","Hydrophis schistosus",36.59,24.42,,,,,,,,,,,8,,,,"Present",,
+214,"18-11-2018","HSTR4047","HSTR4047.A2","Hydrophis schistosus",34.3,24.43,,,,,,,,,,,9,,,,"Present",,
+215,"18-11-2018","HSTR4047","HSTR4047.A3","Hydrophis schistosus",26.57,24.94,,,,,,,,,,,7,,,,"Present",,
+216,"18-11-2018","HSTR4047","HSTR4047.A4","Hydrophis schistosus",33.87,24.81,,,,,,,,,,,8,,,,"Present",,
+217,"18-11-2018","HSTR4047","HSTR4047.A5","Hydrophis schistosus",33.29,20.86,,,,,,,,,,,8,,,,"Present",,
+218,"18-11-2018","HSTR4047","HSTR4047.A6","Hydrophis schistosus",39.38,17.37,,,,,,,,,,,8,,,,"Present",,
+219,"18-11-2018","HSTR4047","HSTR4047.B1","Hydrophis schistosus",31.81,22.19,,,,,,,,,,,6,,,,"Present",,
+220,"18-11-2018","HSTR4047","HSTR4047.B2","Hydrophis schistosus",30.36,25.6,,,,,,,,,,,8,,,,"Present",,
+221,"18-11-2018","HSTR4047","HSTR4047.B3","Hydrophis schistosus",33.99,25.78,,,,,,,,,,,8,,,,"Present",,
+222,"18-11-2018","HSTR4047","HSTR4047.B4","Hydrophis schistosus",33.34,23.88,,,,,,,,,,,7,,,,"Present",,
+223,"18-11-2018","HSTR4047","HSTR4047.B5","Hydrophis schistosus",36.59,24.16,,,,,,,,,,,9,,,,"Present",,
+224,"18-11-2018","HSTR4047","HSTR4047.B6","Hydrophis schistosus",27.57,23.86,,,,,,,,,,,9,,,,"Present",,
+225,"22-11-2018","HSGN4026","HSGN4026.A1","Hydrophis schistosus",25.98,17.25,,,,,,,,,,,6,,,,"Present",,
+226,"22-11-2018","HSGN4026","HSGN4026.A2","Hydrophis schistosus",27.51,19.86,,,,,,,,,,,6,,,,"Present",,
+227,"22-11-2018","HSGN4026","HSGN4026.A3","Hydrophis schistosus",25.15,18.41,,,,,,,,,,,6,,,,"Present",,
+228,"22-11-2018","HSGN4026","HSGN4026.A4","Hydrophis schistosus",27.85,19.92,,,,,,,,,,,6,,,,"Present",,
+229,"22-11-2018","HSGN4026","HSGN4026.A5","Hydrophis schistosus",31.14,19.36,,,,,,,,,,,7,,,,"Present",,
+230,"22-11-2018","HSGN4026","HSGN4026.A6","Hydrophis schistosus",29.36,18.86,,,,,,,,,,,7,,,,"Present",,
+231,"22-11-2018","HSGN4026","HSGN4026.B1","Hydrophis schistosus",30.55,17.38,,,,,,,,,,,6,,,,"Present",,
+232,"22-11-2018","HSGN4026","HSGN4026.B2","Hydrophis schistosus",27.13,19.35,,,,,,,,,,,6,,,,"Present",,
+233,"22-11-2018","HSGN4026","HSGN4026.B3","Hydrophis schistosus",24.81,19.85,,,,,,,,,,,6,,,,"Present",,
+234,"22-11-2018","HSGN4026","HSGN4026.B4","Hydrophis schistosus",26.73,18.36,,,,,,,,,,,6,,,,"Present",,
+235,"22-11-2018","HSGN4026","HSGN4026.B5","Hydrophis schistosus",31.61,13.65,,,,,,,,,,,6,,,,"Present",,

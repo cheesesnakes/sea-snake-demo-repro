@@ -21,7 +21,6 @@ knitr::opts_chunk$set(echo = FALSE, error = T, warning = F, message = F, tidy = 
 
 #Required libraries
 
-library(plyr)
 library(tidyverse)
 library(lubridate)
 library(viridis)
@@ -63,7 +62,7 @@ snakes%>%
 ```{r}
 snakes%>%
   filter(Gear.Type != "")%>%
-  select(Date, Gear.Type, Boat.Name...Owner,No..of.Hauls, Average.Haul.Duration..Hours., Tow.duration.hours)%>%
+  select(Date, Gear.Type, No..of.Hauls, Average.Haul.Duration..Hours., Tow.duration.hours)%>%
   distinct()%>%
   mutate(Tow.duration.hours = case_when(!is.na(Tow.duration.hours) ~ Tow.duration.hours,
                                         is.na(Tow.duration.hours) ~ No..of.Hauls*Average.Haul.Duration..Hours.))%>%
@@ -143,6 +142,9 @@ pop.yr%>%
 Age structure does not change significantly over a four year period from 2016 to 2019.
 
 ```{r}
+
+library(car)
+
 snakes%>%
   filter(Year != "2019")%>%
   group_by(Species)%>%
