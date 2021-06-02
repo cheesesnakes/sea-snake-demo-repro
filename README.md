@@ -12,6 +12,10 @@ Mortality in fisheries bycatch is a threat to marine taxa globally. True sea sna
 
 **Keywords:** Hydrophiinae, life history, population structure, fisheries, India
 
+## Citation
+
+This manuscript is currently under review.
+
 ## Usage
 
 <details>
