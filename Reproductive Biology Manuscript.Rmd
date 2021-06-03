@@ -54,33 +54,41 @@ HS <- snakes%>%
 
 ## Sample size
 
+The number of snakes (N) sampled from bycatch of trawlers, shore seines and gillnetss.
+
 ```{r}
 snakes%>%
   group_by(Species)%>%
   count(name = "N")
 ```
 
+The number of trips (n) and fishing effort (haul-hours) sampled for sea snakes in the current study.
+
 ```{r}
 snakes%>%
   filter(Gear.Type != "")%>%
   select(Date, Gear.Type, No..of.Hauls, Average.Haul.Duration..Hours., Tow.duration.hours)%>%
   distinct()%>%
+  # Calculating tow duration
   mutate(Tow.duration.hours = case_when(!is.na(Tow.duration.hours) ~ Tow.duration.hours,
                                         is.na(Tow.duration.hours) ~ No..of.Hauls*Average.Haul.Duration..Hours.))%>%
   group_by(Gear.Type)%>%
-  summarise(n = n(),
-            haul.hours = sum(Tow.duration.hours, na.rm = T))
+  summarise(n = n(), # counting number of trips sampled
+            haul.hours = sum(Tow.duration.hours, na.rm = T)) # total fishing effort
   
 ```
 
 ## Age structure
 
 ```{r}
+# calculating the mean SVL across years
+
 age.yr <- snakes%>%
   group_by(Species, Year)%>%
   summarise(N = n(),
             mean = mean(Snout.to.Vent..cm., na.rm = T))
 
+# SVL cut off for age classes
 
 maturtity <- snakes%>%
   group_by(Species)%>%
@@ -89,6 +97,8 @@ maturtity <- snakes%>%
          adult = ifelse(Species == "Hydrophis curtus", 54, 65))
   
 ```
+
+### Distribution fo SVL across years
 
 ```{r fig.height=9}
 # plotting distribution of SVL across years
@@ -110,37 +120,49 @@ ggsave(last_plot(), filename = "./Figures/figure1.tiff", height = 6, width = 8)
   
 ```
 
+We did not find any *H. curtus* neonates in our sampling. Majority of *H. curtus* were juveniles. *H. schistosus* populations consisted of mostly adults.
+
+### Proportion of developmental classes across years
+
 ```{r}
 pop.yr <- snakes%>%
   filter(!is.na(Class))%>% # fix 2016 svl
   group_by(Species, Year)%>%
+  # Counting number of individuals in each developmental class
   count(Class)%>%
   complete(Class, fill = list(n = 0))%>%
+  # Total number sampled in each year
   mutate(N = sum(n))%>%
   group_by(Year, Species, Class)%>%
+  # Proportion of each developmental class
   mutate(prop.age = n/N)
+
+# Summary stats
 
 pop.yr%>%
   group_by(Species, Class)%>%
   skimr::skim(prop.age)%>%
   skimr::yank("numeric")%>%
-  select(-hist)
+  select(c(Species, Class, mean, sd))
 ```
+
+### Testing change in proportion of developmental classes across years
 
 ```{r}
 pop.yr%>%
   filter(Year != 2019)%>%
   group_by(Species, Class)%>%
   nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
+  mutate(test = map(data, ~prop.test(.$n, .$N)), # Z - test for proportion
          sumr = map(test, broom::tidy))%>%
   select(sumr)%>%
   unnest()%>%
   select(Class:p.value)
 ```
 
-
 Age structure does not change significantly over a four year period from 2016 to 2019.
+
+### Change in SVL distribution over years
 
 ```{r}
 
@@ -158,21 +180,27 @@ snakes%>%
   unnest()
 ```
 
-GLM shows significance but how do you interpret these results?
+There was a significant change in SVL distribution of species across years.
 
 ```{r, fig.height = 4.5, fig.width=8}
-# plotting distribution of SVL across months
-
 month.svl <- HS%>%
   filter(Year == "2018", # data not sufficient for other years
          Snout.to.Vent..cm. > 20)%>% # removing erroneous data
   mutate(Month = factor(Month, levels = month.name))%>%
   complete(Month)%>%
   group_by(Month)%>%
+  # Calculating mean SVL in each month
   summarise(mean.SVL = mean(Snout.to.Vent..cm., na.rm = T))
 
+# Month of observed births
+
 births <- data.frame(Species = "Hydrophis schistosus", Month = "April")
-  
+```
+
+
+```{r, fig.height = 4.5, fig.width=8}
+# plotting distribution of SVL across months
+
 HS%>%
   filter(Year == "2018", # data not sufficient for other years
          Snout.to.Vent..cm. > 20)%>% # removing erroneous data
@@ -196,12 +224,9 @@ HS%>%
 
 Proportion of neonates increases in March to May. Birth and neonates were observed around the same time.
 
-- GLM testing change in proportion of SVL < 40 over months
-- Other ways to test age structure?
+### Proportion of jeuveniles in each month of 2018
 
 ```{r}
-# proportion of jeuveniles in each month
-
 snakes%>%
   filter(Year == "2018", # data not sufficient for other years
          Snout.to.Vent..cm. > 20)%>% # removing erroneous data
@@ -214,25 +239,24 @@ snakes%>%
 
 ## Sex ratios
 
-```{r, fig.height=13.5, fig.width=16}
-# Plotting sex ratios across years
+### Plotting sex ratios for each species across years
+
+```{r }
 
 snakes%>%
   filter(Sex == "Male" | Sex == "Female")%>%
-  group_by( Species, Year, Month)%>%
+  group_by( Species, Year)%>%
   summarise(N = n(),
             females = sum(Sex == "Female"),
             prop.female = females/N)%>%
-  mutate(Month = factor(Month, levels = month.name))%>%
-  complete(Month)%>%
-  ggplot(aes(Month, prop.female))+
-  geom_col(width = 0.5, col = "black")+
-  scale_x_discrete(guide = guide_axis(n.dodge = 2))+
-  facet_grid(Year ~ Species)
+  ggplot(aes(Year, prop.female, fill = Species))+
+  geom_col(width = 0.5, col = "black", position = position_dodge())
 
 ```
 
 Proportion of females to entire population stays constant over the sampling period.
+
+### Proportion of females encountered by species
 
 ```{r}
 snakes%>%
@@ -240,8 +264,13 @@ snakes%>%
   filter(Sex == "Male" | Sex == "Female")%>%
   summarise(females = sum(Sex == "Female"),
             N = n())
+```
 
+### Testing shift in sex ratios of sea snakes in bycatch
+
+```{r}
 # is proportion of females different from 0.5?
+
 snakes%>%
   filter(Sex == "Male" | Sex == "Female")%>%
   group_by(Species)%>%
@@ -249,15 +278,172 @@ snakes%>%
             N = n())%>%
   group_by(Species)%>%
   nest()%>%
-  mutate(test = map(data, ~prop.test(.$females, .$N, p = 0.5)),
+  mutate(test = map(data, ~prop.test(.$females, .$N, p = 0.5)), # Z - test for proportion
          sumr = map(test, broom::tidy))%>%
   select(sumr)%>%
-  unnest()
+  unnest()%>%
+  select(-c(method, alternative))
 ```
 
-Sex ratio is not different from 0.5 p = 0.71
+Sex ratio is not different from 0.5; p = 0.71.
+
+# Mortality in bycatch
+
+## Overall mortality rate 
+
+```{r}
+snakes%>%
+  group_by(Species)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  # Calculating mortality rate
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+### Testing difference in mortality across species
+
+```{r}
+snakes%>%
+  group_by(Species)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  # Calculating mortality rate
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  ungroup()%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)), # Z - test for propotion
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)%>%
+  rename(`H. schistosus` = estimate2,
+         `H. curtus` = estimate1)
+```
+
+*H. curtus* had as significatly higher mortality rate in bycatch than *H. schistosus*
+
+## Mortality rate by age class
+
+Are juveniles more vulnerable to bycatch mortality than adults?
+
+```{r}
+snakes%>%
+  filter(!is.na(Class))%>%
+  group_by(Species, Class)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  #calculating mortality rate
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+### Testing difference in mortality rates across age classes within species
+
+```{r}
+snakes%>%
+  filter(!is.na(Class))%>%
+  group_by(Species, Class)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  # Caluclating mortality rate
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)), # Z - test for proportion
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+
+```
+
+*H. curtus* had the highest mortality rate overall. *H. schistosus* juveniles had the lowest.
+
+## Mortality rate by sex
+
+```{r}
+snakes%>%
+  filter(Sex != "")%>%
+  group_by(Species, Sex)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  # Calculating mortality rate
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+### Testing difference in mortality rates across sexes withing species
+
+```{r}
+snakes%>%
+  filter(Sex != "")%>%
+  group_by(Species, Sex)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+```
+
+There was no difference in mortality rates across sexes in either species.
+
+## Mortality and female reproductive status
+
+Are gravid females more susceptible to bycatch mortality than the rest of our sample?
+
+```{r}
+HS%>%
+  filter(Sex == "Female",
+         Class == "Adult")%>%
+  group_by(Gravid)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  # Calculating mortality rate
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)
+```
+
+### Testing thing difference in mortality rate of *H. schistosus* females by reproductive state
+
+```{r}
+HS%>%
+  filter(Sex == "Female",
+         Class == "Adult")%>%
+  group_by(Gravid)%>%
+  count(Condition.at.encounter..D.A.)%>%
+  mutate(N = sum(n),
+         prop.dead = n/N)%>%
+  filter(Condition.at.encounter..D.A. == "Dead")%>%
+  select(-Condition.at.encounter..D.A.)%>%
+  ungroup()%>%
+  nest()%>%
+  mutate(test = map(data, ~prop.test(.$n, .$N)),
+         sumr = map(test, broom::tidy))%>%
+  select(sumr)%>%
+  unnest()%>%
+  select(estimate1:p.value)
+```
+
 
 # Observed reproductive cycle of _H. schistosus_
+
+## Proportion of gravid females in the sample
 
 ```{r}
 # percentage of gravid females in sample
@@ -266,10 +452,12 @@ HS%>%
   count(Gravid)%>%
   mutate(N = sum(n))%>%
   mutate(prop.gravid = n/N)%>%
-  filter(Gravid == "Yes")
+  filter(Gravid == "Yes")%>%
+  select(-c(Gravid))
 ```
 
-̥
+## Number of gravid females encountered per year
+
 ```{r}
 # checking the number of gravid females per year
 
@@ -277,8 +465,11 @@ HS%>%
   group_by(Year)%>%
   filter(Gravid == "Yes")%>%
   count(Gravid)%>%
-  spread(Gravid, n)
+  spread(Gravid, n)%>%
+  rename(`n(Gravid Females)` = Yes)
 ```
+
+## Monthly variation in proportion of gravid females
 
 Proper sampling was only conducted in 2018/19 and hence only this period is used for analysis of reproductive cycles.
 
@@ -293,7 +484,7 @@ gravid <- HS%>%
             gravid = sum(Gravid == "Yes"),
             prop.gravid = gravid/N)
 
-print(gravid)
+gravid
 ```
 
 Describing change in the relative proportions of gravid females across months and years of sampling.
@@ -320,8 +511,6 @@ gravid%>%
 
 Pregnancy from Novemeber to May. Peak in Feb. Observed two live births in April.
 
-- Anova/GLM with change in proportion of gravid females over time.
-
 # Development of embryos and eggs
 
 ## Sample size
@@ -332,15 +521,17 @@ embryos%>%
             n.embryos = length(unique(Embryo.Code)))
 ```
 
-## Summary
+## Summary statistics of egg measurements
 
 ```{r}
 embryos%>%
   select(Egg.Length..mm.., Egg.Width..mm.., Egg.Weigth..g.., Snout.to.Vent..cm., Embryo.Weight..g.)%>%
   skimr::skim()%>%
   skimr::yank("numeric")%>%
-  select(-hist)
+  select(c(skim_variable, mean, sd))
 ```
+
+## Sex ratios within clutches
 
 ```{r}
 embryos%>%
@@ -349,42 +540,59 @@ embryos%>%
   summarise(prop.female = sum(Sex == "Female")/n())%>%
   skimr::skim(prop.female)%>%
   skimr::yank("numeric")%>%
-  select(-hist)
+  select(c(skim_variable, mean, sd))
+```
 
+### Number of feamle embryos
+
+```{r}
 embryos%>%
   filter(Sex != "")%>%
   summarise(females = sum(Sex == "Female"),
             N = n())
+```
 
-broom::tidy(prop.test(86, 166, p = 0.5))%>%
+### Testing clutch sex ratio
+
+```{r}
+broom::tidy(prop.test(86, 166, p = 0.5))%>% # Z - test
   select(estimate:conf.high)
 ```
 
 The sex ratio in clutches is not significantly different from 0.5.
 
-## Infertility 
+## Infertility rate
+
+Percentage of eggs with no embryos present:
 
 ```{r}
 embryos%>%
   count(Embryo)%>%
-  mutate(N = sum(n), rate = n*100/N)
+  mutate(N = sum(n), rate = n*100/N)%>%
+  select(-N)
 ```
 
 ## Matrotrophy
 
 Do female _H. schistosus_ expend energy in the development of embryos? or Are the eggs formed and yolk only provides nourishment?
 
+### Change in yolk weight with embryo weight
+
 ```{r}
 embryos%>%
   ggplot(aes(Embryo.Weight..g., Yolk.Weight..g.))+
   geom_point(size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed", size = 1)
+  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
+  labs(x = "Embryo weight (g)", y = "Yolk weight (g)")
 ```
+
+**Linear model to test change in yolk weight with embryo development:**
 
 ```{r}
 embryos%>%
   select(Yolk.Weight..g., Embryo.Weight..g.)%>%
   nest()%>%
+  # Yolk weight is normally distributed
   mutate(mod = map(data, ~lm(Yolk.Weight..g. ~ Embryo.Weight..g., data = .)),
          sumr = map(mod, broom::tidy),
          stat = map(mod, broom::glance))%>%
@@ -393,9 +601,11 @@ embryos%>%
   select(term:r.squared)
 ```
 
-Yolk weight decreases as embryo weight increases. 
+Yolk weight decreases by 0.45 g for every 1g increase in embryo weight. 
 
-```{r}
+### Change in egg mass with embryo development
+
+```{r fig.height=6}
 embryos%>%
   ggplot(aes(Embryo.Weight..g., Egg.Weigth..g..))+
   geom_point(aes(col = Yolk.Weight..g.), size = 3)+
@@ -405,10 +615,13 @@ embryos%>%
 
 ```
 
+Linear model to test relation ship between total egg mass and embryo development:
+
 ```{r}
 embryos%>%
   select(Egg.Weigth..g.., Embryo.Weight..g.)%>%
   nest()%>%
+  # Total egg mass is normally distributed
   mutate(mod = map(data, ~lm(Egg.Weigth..g.. ~ Embryo.Weight..g., data = .)),
          sumr = map(mod, broom::tidy),
          stat = map(mod, broom::glance))%>%
@@ -417,13 +630,15 @@ embryos%>%
   select(term:r.squared)
 ```
 
-Egg weight increases as embryo weight increases
+Total egg mass increases by 0.36 g for every 1g increase in embryo weight. 
 
-Decrease of fat bodies as embryos develop indicates matrotrophic nutrition.
+Note: Embryo weight is log-normally distributed.
 
-- Photos of females dissected ordered according to embryo dev stage 
+Along with decrease of fat bodies of gravid females (Figure A1) as embryos develop indicates matrotrophic nutrition.
 
 # Reproductive effort
+
+Does the amount of enery expended by female _H. schistosus_ reduce with age?
 
 ```{r}
 # Cleaning reproductive effort data
@@ -441,13 +656,12 @@ re <- embryos%>%
          Female.TL = Tail.Length..cm..y,
          Mother.Wt = Weight..g.
          )%>%
+  # Removing erroneous data point
   filter(Female.SVL > 50)
 ```
 
 
 ## Increase in clutch size with female age
-
-Does the amount of enery expended by female _H. schistosus_ reduce with age?
 
 ```{r}
 re_clutch <- re%>%
@@ -458,32 +672,44 @@ re_clutch <- re%>%
             Mother.wt = last(Mother.Wt),
             Female.SVL = last(Female.SVL))%>%
   mutate(rcm = Clutch.wt/(Mother.wt - Clutch.wt))
-```
 
-```{r}
 re_clutch%>%
   ggplot(aes(Female.SVL, clutch.size))+
   geom_point(size =3)+
-  geom_smooth(method = "lm")
+  geom_smooth(method = 'glm', method.args = list(family = 'poisson'))+
+  labs(x = "Female SVL (cm)", y = "Clutch Size")
 ```
 
+**Generalised linear model to test change in clutch size with female SVL:**
+
+Clutch size is poisson distributed with mean `r mean(re_clutch$clutch.size)` and variance `r var(re_clutch$clutch.size)`
+
 ```{r}
+
+mcfadden <- function(x){
+  
+  r2 <- 1 - (x$deviance/x$null.deviance)
+  
+}
+
 re_clutch%>%
   select(Female.SVL, clutch.size)%>%
   nest()%>%
-  mutate(mod = map(data, ~lm(clutch.size ~ Female.SVL, data = .)),
+  mutate(mod = map(data, ~glm(clutch.size ~ Female.SVL, data = ., family = "poisson")),
          sumr = map(mod, broom::tidy),
-         stat = map(mod, broom::glance))%>%
-  select(sumr, stat)%>%
+         stat = map(mod, broom::glance),
+         r.squared =  map_dbl(stat, ~mcfadden(.)))%>%
+  select(sumr, stat,r.squared)%>%
   unnest()%>%
-  select(term:r.squared)
+  select(c(term:p.value, r.squared))
+
 ```
 
-The number of eggs borne by females increases with age (SVL).
+The number of eggs borne by females increase by `r exp(0.025)` for every 1 cm increase in female SVL.
 
 ## Change in overall reproductive effort with age
 
-```{r}
+```{r fig.height=6}
 re_clutch%>%
   ggplot(aes(Female.SVL, rcm))+
   geom_point(aes(col = clutch.size), size = 3)+
@@ -493,6 +719,8 @@ re_clutch%>%
   scale_color_viridis(name = "Clutch size")+
   theme(legend.text = element_text(size = 10))
 ```
+
+**Linear model to determine relationship between relative clutch mass and female SVL:**
 
 ```{r}
 re_clutch%>%
@@ -512,8 +740,8 @@ The overall reproductive effort **does not change** with female age.
 
 Does the effort per embryo change with female age?
 
-```{r}
-# reproductive effort per embruo
+```{r fig.height=6}
+# calculating reproductive effort per embruo
 
 re_embryo <- re%>%
   select(Field.Code, Embryo.Code, Egg.Weigth..g..,  Mother.Wt, Female.SVL, Embryo.Sex, Embryo.SVL)%>%
@@ -521,17 +749,17 @@ re_embryo <- re%>%
   mutate(clutch.wt = sum(Egg.Weigth..g..), 
          Female.wt = Mother.Wt - clutch.wt)%>%
   group_by(Field.Code, Embryo.Code)%>%
-  summarise(inv = Egg.Weigth..g../Female.wt, 
+  summarise(inv = Egg.Weigth..g../Female.wt,# investment per embryo
             Female.SVL = last(Female.SVL),
             Embryo.Sex = Embryo.Sex,
             Embryo.SVL = Embryo.SVL)%>%
   ungroup()
-```
 
-```{r}
 # using residuals to control for embryo development
 
 emsvlinv <- lm(inv ~ Embryo.SVL, data = re_embryo)
+
+# Plotting
 
 re_embryo%>%
   modelr::add_residuals(emsvlinv)%>%
@@ -543,6 +771,10 @@ re_embryo%>%
   scale_color_viridis(name = "Embryo SVL (cm)")
 
 ```
+
+**Linear model to detemine relationship between female SVL and investment per embryo:**
+
+We have controlled for the effect of embryo development.
 
 ```{r}
 re_embryo%>%
@@ -560,7 +792,9 @@ The relative egg mass (controlled for embryo development) reduces with female SV
 
 ## Difference in reproductive effort for male and female embryos
 
-```{r}
+Does female investment differ by sex of the embryo?
+
+```{r fig.height=6}
 re_embryo%>%
   filter(Embryo.Sex == "Male" | Embryo.Sex == "Female")%>%
   modelr::add_residuals(emsvlinv)%>%
@@ -569,8 +803,13 @@ re_embryo%>%
   geom_smooth(method = "lm", linetype = "dashed", size = 1)+
   scale_y_continuous(name = "Relative egg mass (residuals)")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
-  scale_color_viridis(name = "Embryo SVL (cm)")
+  scale_color_viridis(name = "Embryo SVL (cm)")+
+  scale_shape_discrete(name = "Embryo Sex")
 ```
+
+**Linear model to test for the difference in female investment by embryo sex:**
+
+We controlled for the effect of embryo development.
 
 ```{r}
 re_embryo%>%
@@ -584,131 +823,4 @@ re_embryo%>%
   unnest()%>%
   select(term:p.value, r.squared)
 ```
-
-# Mortality in bycatch
-
-## Overall mortality
-
-```{r}
-snakes%>%
-  group_by(Species)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)
-```
-
-```{r}
-snakes%>%
-  group_by(Species)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
-  ungroup()%>%
-  nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
-```
-
-## Mortality by age class
-
-```{r}
-snakes%>%
-  filter(!is.na(Class))%>%
-  group_by(Species, Class)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)
-```
-
-```{r}
-snakes%>%
-  filter(!is.na(Class))%>%
-  group_by(Species, Class)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
-  group_by(Species)%>%
-  nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
-
-```
-
-## Mortality by sex
-
-```{r}
-snakes%>%
-  filter(Sex != "")%>%
-  group_by(Species, Sex)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)
-```
-
-```{r}
-snakes%>%
-  filter(Sex != "")%>%
-  group_by(Species, Sex)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
-  group_by(Species)%>%
-  nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
-```
-
-## Mortality by female reproductive status
-
-```{r}
-HS%>%
-  filter(Sex == "Female",
-         Class == "Adult")%>%
-  group_by(Gravid)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)
-```
-
-```{r}
-HS%>%
-  filter(Sex == "Female",
-         Class == "Adult")%>%
-  group_by(Gravid)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
-  ungroup()%>%
-  nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
-```
-
+Female investment does not differ significantly with embryo sex.
