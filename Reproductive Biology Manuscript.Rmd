@@ -1,16 +1,12 @@
 ---
 title: "Demographics and reproductive biology of H. schistosus from bycatch on the west coast of India"
 subtitle: "Analysis for Manuscript"
+author: "Shawn Dsouza and Chetan Rao" 
 output:
-   html_document:
+  rmdformats::robobook:
+    code_folding: hide
     css: style.css
     df_print: kable
-    theme: spacelab
-    toc: yes
-    toc_float: yes
-    toc_depth: 2
-    number_sections: yes
-    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
