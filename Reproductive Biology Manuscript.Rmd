@@ -64,8 +64,6 @@ mcfadden <- function(x){
 years <- data.frame(Year = factor(c(2016:2019)))
 ```
 
-# Demographics of _H. schistosus_ across time
-
 ## Sample size
 
 The number of snakes (N) sampled from bycatch of trawlers, shore seines and gillnetss.
@@ -102,6 +100,9 @@ snakes%>%
             haul.hours = sum(Tow.duration.hours, na.rm = T)) # total fishing effort
   
 ```
+
+
+# Demographics of _H. schistosus_ across time
 
 ## Age structure
 
@@ -158,10 +159,13 @@ snakes%>%
   select(Year, Snout.to.Vent..cm.)%>%
   nest()%>%
   mutate(mod = map(data, ~lm(Snout.to.Vent..cm. ~ Year, data = .)),
-          sumr = map(mod, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()
+          sumr = map(mod, broom::tidy),
+         stat = map(mod, glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(c(Species:r.squared))
 ```
+
 ANOVA to test for effect of years:
 
 ```{r}
@@ -386,8 +390,9 @@ snakes%>%
   group_by(Species)%>%
   nest()%>%
   mutate(mod = map(data, ~glm(Sex ~ Year, family = binomial, data = .)),
-         sumry = map(mod, ~tidy(., exponentiate = T)))%>%
-  select(sumry)%>%
+         sumry = map(mod, ~tidy(.)),
+         r2 = map_dbl(mod, ~mcfadden(.)))%>%
+  select(sumry, r2)%>%
   unnest(sumry)
 ```
 
@@ -432,24 +437,42 @@ snakes%>%
 
 ### Testing difference in mortality across species
 
+Logistic model:
+
 ```{r}
 snakes%>%
-  group_by(Species)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  # Calculating mortality rate
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
-  ungroup()%>%
+  filter(Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Species, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")))%>%
   nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)), # Z - test for propotion
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)%>%
-  rename(`H. schistosus` = estimate2,
-         `H. curtus` = estimate1)
+  mutate(test = map(data, ~glm(Condition ~ Species, family = "binomial", data = .)),
+         sumr = map(test, ~broom::tidy(.)),
+         r2 = map(test, ~mcfadden(.)))%>%
+  select(sumr, r2)%>%
+  unnest()
+```
+Fitted probability of mortality:
+
+```{r}
+
+spp = data.frame(Species = c("Hydrophis schistosus", "Hydrophis curtus"))
+
+snakes%>%
+  filter(Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Species, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")))%>%
+  nest()%>%
+  mutate(mod = map(data, ~glm(Condition ~ Species, family = "binomial", data = .)),
+         fit = map(mod, ~predict(., spp, se.fit = T, type = "response")),
+         fit = map(fit, ~data.frame(.)))%>%
+  select(fit)%>%
+  unnest(fit)%>%
+  mutate(Species = factor(c("Hydrophis schsitosus", "Hydrophis curtus")))%>%
+  ggplot(aes(Species, fit))+
+  geom_pointrange(aes(ymin = fit - se.fit, ymax = fit + se.fit))+
+  labs(y = "P(Dead|Species)")+
+  theme(axis.text.x =  element_text(face = "italic"))
+
 ```
 
 *H. curtus* had as significatly higher mortality rate in bycatch than *H. schistosus*
@@ -459,6 +482,7 @@ snakes%>%
 Are juveniles more vulnerable to bycatch mortality than adults?
 
 ```{r}
+
 snakes%>%
   filter(!is.na(Class))%>%
   group_by(Species, Class)%>%
@@ -472,27 +496,52 @@ snakes%>%
 
 ### Testing difference in mortality rates across age classes within species
 
+Logistic model:
+
 ```{r}
+
 snakes%>%
-  filter(!is.na(Class))%>%
-  group_by(Species, Class)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  # Caluclating mortality rate
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
+  filter(!is.na(Class),
+         Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Species, Class, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")))%>%
   group_by(Species)%>%
   nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)), # Z - test for proportion
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
+  mutate(test = map(data, ~glm(Condition ~ Class, family = "binomial", data = .)),
+         sumr = map(test, ~broom::tidy(.)),
+         r2 = map(test, ~mcfadden(.)))%>%
+  select(sumr, r2)%>%
+  unnest()
 
 ```
 
-*H. curtus* had the highest mortality rate overall. *H. schistosus* juveniles had the lowest.
+Fitted probability of mortality across age classes:
+
+```{r}
+
+dev = data.frame(Class = c("Adult", "Juvenile", "Neonate"))
+
+snakes%>%
+  filter(!is.na(Class),
+         Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Species, Class, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")))%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(mod = map(data, ~glm(Condition ~ Class, family = "binomial", data = .)),
+         fit = map(mod, ~predict(., dev, se.fit = T, type = "response")),
+         fit = map(fit, ~data.frame(.)))%>%
+  select(fit)%>%
+  unnest(fit)%>%
+  mutate(Class = factor(c("Adult", "Juvenile", "Neonate")))%>%
+  ggplot(aes(Class, fit))+
+  geom_pointrange(aes(ymin = fit - se.fit, ymax = fit + se.fit))+
+  labs(y = "P(Dead)")+
+  facet_wrap(~Species)+
+  theme(strip.text = element_text(face = "italic"))
+
+```
+*H. curtus* adults had the highest mortality rate overall. *H. schistosus* juveniles had the lowest.
 
 ## Mortality rate by sex
 
@@ -510,24 +559,50 @@ snakes%>%
 
 ### Testing difference in mortality rates across sexes withing species
 
+Logistic model:
+
 ```{r}
+
 snakes%>%
-  filter(Sex != "")%>%
-  group_by(Species, Sex)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
+  filter(Sex %in% c("Male", "Female"),
+         Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Species, Sex, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")))%>%
   group_by(Species)%>%
   nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
+  mutate(test = map(data, ~glm(Condition ~ Sex, family = "binomial", data = .)),
+         sumr = map(test, ~broom::tidy(.)),
+         r2 = map(test, ~mcfadden(.)))%>%
+  select(sumr, r2)%>%
+  unnest()
+
 ```
 
+Fitted probability of mortality across sexes:
+
+```{r}
+sex = data.frame(Sex = c("Male", "Female"))
+
+snakes%>%
+  filter(Sex %in% c("Male", "Female"),
+         Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Species, Sex, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")))%>%
+  group_by(Species)%>%
+  nest()%>%
+  mutate(mod = map(data, ~glm(Condition ~ Sex, family = "binomial", data = .)),
+         fit = map(mod, ~predict(., sex, se.fit = T, type = "response")),
+         fit = map(fit, ~data.frame(.)))%>%
+  select(fit)%>%
+  unnest(fit)%>%
+  mutate(Sex = c("Male", "Female"))%>%
+  ggplot(aes(Sex, fit))+
+  geom_pointrange(aes(ymin = fit - se.fit, ymax = fit + se.fit))+
+  labs(y = "P(Dead)")+
+  facet_wrap(~Species)+
+  theme(strip.text = element_text(face = "italic"))
+
+```
 There was no difference in mortality rates across sexes in either species.
 
 ## Mortality and female reproductive status
@@ -549,25 +624,50 @@ HS%>%
 
 ### Testing thing difference in mortality rate of *H. schistosus* females by reproductive state
 
+Logistic model:
+
 ```{r}
+
 HS%>%
   filter(Sex == "Female",
-         Class == "Adult")%>%
-  group_by(Gravid)%>%
-  count(Condition.at.encounter..D.A.)%>%
-  mutate(N = sum(n),
-         prop.dead = n/N)%>%
-  filter(Condition.at.encounter..D.A. == "Dead")%>%
-  select(-Condition.at.encounter..D.A.)%>%
-  ungroup()%>%
+         Class == "Adult",
+         Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Gravid, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")),
+         Gravid = ifelse(Gravid == "", "No", Gravid))%>%
   nest()%>%
-  mutate(test = map(data, ~prop.test(.$n, .$N)),
-         sumr = map(test, broom::tidy))%>%
-  select(sumr)%>%
-  unnest()%>%
-  select(estimate1:p.value)
+  mutate(test = map(data, ~glm(Condition ~ Gravid, family = "binomial", data = .)),
+         sumr = map(test, ~broom::tidy(.)),
+         r2 = map(test, ~mcfadden(.)))%>%
+  select(sumr, r2)%>%
+  unnest()
 ```
 
+Fitted probability of mortality by reproductive state:
+
+```{r}
+gravid = data.frame(Gravid = c("Yes", "No"))
+
+HS%>%
+  filter(Sex == "Female",
+         Class == "Adult",
+         Condition.at.encounter..D.A. %in% c("Dead", "Alive"))%>% # removing missing data
+  select(Gravid, Condition.at.encounter..D.A.)%>%
+  mutate(Condition = factor(Condition.at.encounter..D.A., levels = c("Alive", "Dead")),
+         Gravid = ifelse(Gravid == "", "No", Gravid))%>%
+  nest()%>%
+  mutate(mod = map(data, ~glm(Condition ~ Gravid, family = "binomial", data = .)),
+         fit = map(mod, ~predict(., gravid, se.fit = T, type = "response")),
+         fit = map(fit, ~data.frame(.)))%>%
+  select(fit)%>%
+  unnest(fit)%>%
+  mutate(State = c("Gravid", "Not Gravid"))%>%
+  ggplot(aes(State, fit))+
+  geom_pointrange(aes(ymin = fit - se.fit, ymax = fit + se.fit))+
+  labs(y = "P(Dead)")+
+  theme(strip.text = element_text(face = "italic"))
+
+```
 
 # Observed reproductive cycle of _H. schistosus_
 
