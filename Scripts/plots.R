@@ -1,6 +1,9 @@
 # Plots for MS
 ## run main script before running this script
 
+require(tidyverse)
+require(viridis)
+
 # Figure 2
 
 fig2a <-HS%>%
@@ -40,23 +43,25 @@ fig2b <- gravid%>%
 
 fig2 <- gridExtra::grid.arrange(fig2a, fig2b, ncol = 1)
 
-ggsave(fig2, filename = "./Figures/figure2.tiff", height = 9, width = 8)
+ggsave(fig2, filename = "../Figures/figure2.tiff", height = 9, width = 8)
 
 # Figure 3
 
 fig3a <- re_clutch%>%
+  mutate(fitted = predict(re_mod, re_clutch),
+         q.low = predict(re_mod, re_clutch, "quantile", at = c(0.05)),# lower bound
+         q.high = predict(re_mod, re_clutch, "quantile", at = c(0.95)))%>% # upper bound
   ggplot(aes(Female.SVL, rcm))+
   geom_point(aes(col = clutch.size), size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed")+
+  geom_smooth(aes(y = fitted, ymin = q.low, ymax = q.high), stat = "identity", linetype = "dashed")+
   scale_y_continuous(name = "Relative clutch mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Clutch size")+
-  theme(legend.text = element_text(size = 10))+
   labs(title = "A")+
   theme(axis.title.x = element_blank(),
-        legend.position=c(0.8, 0.8), 
+        legend.position=c(0.825, 0.85), 
         legend.direction = "horizontal")+
-  guides(colour = guide_colorbar(title.position = "top", title.hjust = 0.5))
+  guides(colour = guide_colorbar(title.position = "top", title.hjust = 0.5, barwidth = 10))
 
 fig3b <- re_embryo%>%
   modelr::add_residuals(emsvlinv)%>%

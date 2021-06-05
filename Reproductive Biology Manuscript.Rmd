@@ -142,7 +142,7 @@ snakes%>%
   labs(y = "Snout to vent length (cm)")+
   theme(strip.text = element_text(face = "italic"))
 
-ggsave(last_plot(), filename = "./Figures/figure1.tiff", height = 6, width = 8)
+ggsave(last_plot(), filename = "./Figures/figure1.tiff", height = 9, width = 8)
   
 ```
 
@@ -153,6 +153,7 @@ Linear model for change in SVL of each species across years:
 ```{r}
 
 library(car)
+require(broom)
 
 snakes%>%
   group_by(Species)%>%
@@ -934,7 +935,7 @@ The number of eggs borne by females increase by `r exp(0.025)` for every 1 cm in
 **Beta regression to determine relationship between relative clutch mass and female SVL:**
 
 ```{r}
-library(betareg)
+require(betareg)
 
 re_clutch%>%
   select(Female.SVL, rcm)%>%
@@ -1059,3 +1060,4 @@ re_embryo%>%
   select(component:p.value, pseudo.r.squared)
 ```
 Female investment does not differ significantly with embryo sex.
+
