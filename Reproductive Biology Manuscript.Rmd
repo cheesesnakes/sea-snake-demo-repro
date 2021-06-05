@@ -914,12 +914,6 @@ Clutch size is poisson distributed with mean `r mean(re_clutch$clutch.size)` and
 
 ```{r}
 
-mcfadden <- function(x){
-  
-  r2 <- 1 - (x$deviance/x$null.deviance)
-  
-}
-
 re_clutch%>%
   select(Female.SVL, clutch.size)%>%
   nest()%>%
@@ -937,29 +931,36 @@ The number of eggs borne by females increase by `r exp(0.025)` for every 1 cm in
 
 ## Change in overall reproductive effort with age
 
+**Beta regression to determine relationship between relative clutch mass and female SVL:**
+
+```{r}
+library(betareg)
+
+re_clutch%>%
+  select(Female.SVL, rcm)%>%
+  nest()%>%
+  mutate(mod = map(data, ~betareg(rcm ~ Female.SVL, data = .)),
+         sumr = map(mod, ~tidy(., conf.int = T)),
+         stat = map(mod, broom::glance))%>%
+  select(sumr, stat)%>%
+  unnest()%>%
+  select(component:pseudo.r.squared)
+
+re_mod <- betareg(rcm ~ Female.SVL, data = re_clutch)
+```
+
 ```{r fig.height=6}
 re_clutch%>%
+  mutate(fitted = predict(re_mod, re_clutch),
+         q.low = predict(re_mod, re_clutch, "quantile", at = c(0.05)),# lower bound
+         q.high = predict(re_mod, re_clutch, "quantile", at = c(0.95)))%>% # upper bound
   ggplot(aes(Female.SVL, rcm))+
   geom_point(aes(col = clutch.size), size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed")+
+  geom_smooth(aes(y = fitted, ymin = q.low, ymax = q.high), stat = "identity", linetype = "dashed")+
   scale_y_continuous(name = "Relative clutch mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Clutch size")+
   theme(legend.text = element_text(size = 10))
-```
-
-**Linear model to determine relationship between relative clutch mass and female SVL:**
-
-```{r}
-re_clutch%>%
-  select(Female.SVL, rcm)%>%
-  nest()%>%
-  mutate(mod = map(data, ~lm(rcm ~ Female.SVL, data = .)),
-         sumr = map(mod, broom::tidy),
-         stat = map(mod, broom::glance))%>%
-  select(sumr, stat)%>%
-  unnest()%>%
-  select(term:r.squared)
 ```
 
 The overall reproductive effort **does not change** with female age.
@@ -968,7 +969,7 @@ The overall reproductive effort **does not change** with female age.
 
 Does the effort per embryo change with female age?
 
-```{r fig.height=6}
+```{r }
 # calculating reproductive effort per embruo
 
 re_embryo <- re%>%
@@ -983,9 +984,30 @@ re_embryo <- re%>%
             Embryo.SVL = Embryo.SVL)%>%
   ungroup()
 
+```
+
+**Linear model to detemine relationship between female SVL and investment per embryo:**
+
+We have controlled for the effect of embryo development.
+
+```{r}
+re_embryo%>%
+  select(Female.SVL, inv, Embryo.SVL)%>%
+  nest()%>%
+  mutate(mod = map(data, ~betareg(inv ~ Female.SVL + Embryo.SVL, data = .)),
+         sumr = map(mod, broom::tidy),
+         stat = map(mod, broom::glance))%>%
+  select(sumr,stat)%>%
+  unnest()%>%
+  select(component:p.value, pseudo.r.squared)
+```
+
+Plotting relatonship between residuals and female SVL:
+
+```{r fig.height=6}
 # using residuals to control for embryo development
 
-emsvlinv <- lm(inv ~ Embryo.SVL, data = re_embryo)
+emsvlinv <- betareg(inv ~ Embryo.SVL, data = re_embryo)
 
 # Plotting
 
@@ -998,22 +1020,7 @@ re_embryo%>%
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Embryo SVL (cm)")
 
-```
 
-**Linear model to detemine relationship between female SVL and investment per embryo:**
-
-We have controlled for the effect of embryo development.
-
-```{r}
-re_embryo%>%
-  select(Female.SVL, inv, Embryo.SVL)%>%
-  nest()%>%
-  mutate(mod = map(data, ~lm(inv ~ Female.SVL + Embryo.SVL, data = .)),
-         sumr = map(mod, broom::tidy),
-         stat = map(mod, broom::glance))%>%
-  select(sumr, stat)%>%
-  unnest()%>%
-  select(term:p.value, r.squared)
 ```
 
 The relative egg mass (controlled for embryo development) reduces with female SVL.
@@ -1044,11 +1051,11 @@ re_embryo%>%
   filter(Embryo.Sex == "Male" | Embryo.Sex == "Female")%>%
   select(Embryo.Sex, inv, Embryo.SVL)%>%
   nest()%>%
-  mutate(mod = map(data, ~lm(inv ~ Embryo.Sex + Embryo.SVL, data = .)),
+  mutate(mod = map(data, ~betareg(inv ~ Embryo.Sex + Embryo.SVL, data = .)),
          sumr = map(mod, broom::tidy),
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
-  select(term:p.value, r.squared)
+  select(component:p.value, pseudo.r.squared)
 ```
 Female investment does not differ significantly with embryo sex.
