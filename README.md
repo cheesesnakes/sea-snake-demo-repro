@@ -21,25 +21,23 @@ This manuscript is currently under review.
 <details>
   <summary> View results </summary>
   
-  The R markdown file is configured to out put an HTML document with the results of the analysis. Paste the following code in the terminal. With the working directory set to root of this reporsitory.
+  The R markdown file is configured to out put an HTML document with the results of the analysis. Paste the following code in the terminal. With the working directory set to root of this repository.
   
   
   ```R
   rmarkdown::render_site(input = "Reproductive Biology Manuscript.Rmd", encoding = "UTF")
   ```
   
-  The analysis can also be viewed by opening the `Reproductive-Biology-Mnauscript.html` file in any browser.
+  *OR*
+  
+  Go to https://cheesesnakes.github.io/sea-snake-demo-repro/.
   
   </details>
  
  <details>
   <summary>Go through analysis</summary>
-  
-   - The sections of the analysis have been split into seperate R markdown files and can be run independently. 
     
    - R markdown files are best viewed in the R studio IDE.
-    
-   - Some of the analysis refer to custom functions that are included in the `Functions` folder.
    
    - Before working with the file locally a portable local environment can be activated to make sure you have all the dependencies by running `renv::activate()` and `renv::restore()`. You will need to intall the `renv` package for this. For more information please refer to https://rstudio.github.io/renv/articles/renv.html.
    
@@ -60,7 +58,7 @@ This manuscript is currently under review.
   ```
 
   </details>
-
+ 
  ## Liscence and Copyright
  
  © Shawn Dsouza, Dakshin Foundation
