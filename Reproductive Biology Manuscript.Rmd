@@ -14,7 +14,7 @@ output:
 
 options(max.print="75")
 knitr::opts_chunk$set(error = T, warning = F, message = F, tidy = T, cache = T,
-                      dpi = 300, fig.align = "center", fig.height = 4.5, fig.width = 8)
+                      dpi = 300, fig.align = "center", fig.height = 4.5, fig.width = 8, digits = 3)
 
 require(ggplot2)
 
@@ -89,7 +89,7 @@ The number of trips (n) and fishing effort (haul-hours) sampled for sea snakes i
 ```{r}
 snakes%>%
   filter(Gear.Type != "")%>%
-  select(Date, Gear.Type, No..of.Hauls, Average.Haul.Duration..Hours., Tow.duration.hours)%>%
+  select(Date, Boat.ID, Gear.Type, No..of.Hauls, Average.Haul.Duration..Hours., Tow.duration.hours)%>%
   distinct()%>%
   # Calculating tow duration
   mutate(Tow.duration.hours = case_when(!is.na(Tow.duration.hours) ~ Tow.duration.hours,
@@ -204,25 +204,19 @@ There was a significant change in SVL distribution of species across years.
 ### Proportion of developmental classes across years
 
 ```{r}
-pop.yr <- snakes%>%
-  filter(!is.na(Class))%>% # fix 2016 svl
-  group_by(Species, Year)%>%
+snakes%>%
+  filter(!is.na(Class))%>%
+  group_by(Species)%>%
   # Counting number of individuals in each developmental class
   count(Class)%>%
   complete(Class, fill = list(n = 0))%>%
   # Total number sampled in each year
   mutate(N = sum(n))%>%
-  group_by(Year, Species, Class)%>%
-  # Proportion of each developmental class
-  mutate(prop.age = n/N)
-
-# Summary stats
-
-pop.yr%>%
   group_by(Species, Class)%>%
-  skimr::skim(prop.age)%>%
-  skimr::yank("numeric")%>%
-  select(c(Species, Class, mean, sd))
+  # Proportion of each developmental class
+  mutate(p = n/N,
+         sd = sqrt(p*(1-p)/N))
+
 ```
 
 ### Testing change in proportion of developmental classes across years
@@ -248,6 +242,15 @@ dev.yr <- snakes%>%
 ```{r}
 dev.yr%>%
   select(smry, r2)%>%
+  unnest()
+```
+
+ANOVA to test for effect of years:
+
+```{r}
+dev.yr%>%
+  mutate(stat = map(mod, car::Anova))%>%
+  select(stat)%>%
   unnest()
 ```
 
@@ -325,8 +328,8 @@ snakes%>%
          Snout.to.Vent..cm. > 20)%>% # removing erroneous data
   mutate(Month = factor(Month, levels = month.name))%>%
   group_by(Species, Month)%>%
-  summarise(prop.neonate = sum(Snout.to.Vent..cm. < 40)/n())%>%
-  spread(Month, prop.neonate)
+  summarise(p = sum(Snout.to.Vent..cm. < 40)/n(),
+            sd = sqrt(p*(1-p)/n()))
 ```
 
 ## Sex ratios
@@ -339,7 +342,8 @@ snakes%>%
   filter(Sex == "Male" | Sex == "Female")%>%
   summarise(females = sum(Sex == "Female"),
             N = n(),
-            P = females/N)
+            P = females/N,
+            sd = sqrt(P*(1-P)/N))
 ```
 
 ### Testing equality in sex ratios
@@ -371,9 +375,11 @@ snakes%>%
   group_by( Species, Year)%>%
   summarise(N = n(),
             females = sum(Sex == "Female"),
-            prop.female = females/N)%>%
+            prop.female = females/N, 
+            sd = sqrt(prop.female*(1-prop.female)/N))%>%
   ggplot(aes(Year, prop.female, fill = Species))+
-  geom_col(width = 0.5, col = "black", position = position_dodge())
+  geom_col(width = 0.5, col = "black", position = position_dodge())+
+  geom_errorbar(aes(ymin = prop.female-sd, ymax = prop.female + sd), position = position_dodge(width = 0.5), width = 0.25)
 
 ```
 
@@ -427,7 +433,8 @@ snakes%>%
   count(Condition.at.encounter..D.A.)%>%
   # Calculating mortality rate
   mutate(N = sum(n),
-         prop.dead = n/N)%>%
+         prop.dead = n/N,
+         sd = sqrt(prop.dead*(1-prop.dead)/N))%>%
   filter(Condition.at.encounter..D.A. == "Dead")%>%
   select(-Condition.at.encounter..D.A.)
 ```
@@ -444,9 +451,11 @@ snakes%>%
   nest()%>%
   mutate(test = map(data, ~glm(Condition ~ Species, family = "binomial", data = .)),
          sumr = map(test, ~broom::tidy(.)),
+         stat = map(test, broom::glance),
          r2 = map(test, ~mcfadden(.)))%>%
-  select(sumr, r2)%>%
-  unnest()
+  select(sumr, stat, r2)%>%
+  unnest()%>%
+  select(term:p.value, df.residual, r2)
 ```
 
 Fitted probability of mortality:
@@ -487,7 +496,8 @@ snakes%>%
   count(Condition.at.encounter..D.A.)%>%
   #calculating mortality rate
   mutate(N = sum(n),
-         prop.dead = n/N)%>%
+         prop.dead = n/N,
+         sd = sqrt(prop.dead*(1-prop.dead)/N))%>%
   filter(Condition.at.encounter..D.A. == "Dead")%>%
   select(-Condition.at.encounter..D.A.)
 ```
@@ -507,9 +517,11 @@ snakes%>%
   nest()%>%
   mutate(test = map(data, ~glm(Condition ~ Class, family = "binomial", data = .)),
          sumr = map(test, ~broom::tidy(.)),
+         stat = map(test, broom::glance),
          r2 = map(test, ~mcfadden(.)))%>%
-  select(sumr, r2)%>%
-  unnest()
+  select(sumr, stat, r2)%>%
+  unnest()%>%
+  select(term:p.value, df.residual, r2)
 
 ```
 
@@ -551,7 +563,8 @@ snakes%>%
   count(Condition.at.encounter..D.A.)%>%
   # Calculating mortality rate
   mutate(N = sum(n),
-         prop.dead = n/N)%>%
+         prop.dead = n/N,
+         sd = sqrt(prop.dead*(1-prop.dead)/N))%>%
   filter(Condition.at.encounter..D.A. == "Dead")%>%
   select(-Condition.at.encounter..D.A.)
 ```
@@ -571,9 +584,11 @@ snakes%>%
   nest()%>%
   mutate(test = map(data, ~glm(Condition ~ Sex, family = "binomial", data = .)),
          sumr = map(test, ~broom::tidy(.)),
+         stat = map(test, broom::glance),
          r2 = map(test, ~mcfadden(.)))%>%
-  select(sumr, r2)%>%
-  unnest()
+  select(sumr, stat, r2)%>%
+  unnest()%>%
+  select(term:p.value, df.residual, r2)
 
 ```
 
@@ -617,7 +632,8 @@ HS%>%
   count(Condition.at.encounter..D.A.)%>%
   # Calculating mortality rate
   mutate(N = sum(n),
-         prop.dead = n/N)%>%
+         prop.dead = n/N, 
+         sd = sqrt(prop.dead*(1-prop.dead)/N))%>%
   filter(Condition.at.encounter..D.A. == "Dead")%>%
   select(-Condition.at.encounter..D.A.)
 ```
@@ -638,9 +654,11 @@ HS%>%
   nest()%>%
   mutate(test = map(data, ~glm(Condition ~ Gravid, family = "binomial", data = .)),
          sumr = map(test, ~broom::tidy(.)),
+         stat = map(test, broom::glance),
          r2 = map(test, ~mcfadden(.)))%>%
-  select(sumr, r2)%>%
-  unnest()
+  select(sumr, stat, r2)%>%
+  unnest()%>%
+  select(term:p.value, df.residual, r2)
 ```
 
 Fitted probability of mortality by reproductive state:
@@ -679,7 +697,8 @@ HS%>%
 HS%>%
   count(Gravid)%>%
   mutate(N = sum(n))%>%
-  mutate(prop.gravid = n/N)%>%
+  mutate(prop.gravid = n/N,
+         sd = sqrt(prop.gravid*(1-prop.gravid)))%>%
   filter(Gravid == "Yes")%>%
   select(-c(Gravid))
 ```
@@ -710,7 +729,8 @@ gravid <- HS%>%
   group_by(Month)%>%
   summarise(N = n(),
             gravid = sum(Gravid == "Yes"),
-            prop.gravid = gravid/N)
+            prop.gravid = gravid/N,
+         sd = sqrt(prop.gravid*(1-prop.gravid)/N))
 
 gravid
 ```
@@ -724,7 +744,7 @@ gravid%>%
   mutate(Month = factor(Month, levels = month.name))%>%
   complete(Month, fill = list(prop.gravid = 0))%>%
   ggplot(aes(Month, prop.gravid))+
-  geom_point(size = 3)+
+  geom_pointrange(size = 1, aes(ymin = prop.gravid + sd, ymax = prop.gravid - sd))+
   geom_path(aes(group = 1), size = 1, linetype = "dashed")+
   geom_segment(aes(x = "April", xend = "April", y = 0 , yend = 0.02), #marking births
                arrow = arrow(length = unit(0.25, "cm"), ends = "first"), size = 1)+
@@ -823,7 +843,7 @@ embryos%>%
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
-  select(term:r.squared)
+  select(term:r.squared, df.residual)
 ```
 
 Yolk weight decreases by 0.45 g for every 1g increase in embryo weight.
@@ -852,7 +872,7 @@ embryos%>%
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
-  select(term:r.squared)
+  select(term:r.squared, df.residual)
 ```
 
 Total egg mass increases by 0.36 g for every 1g increase in embryo weight.
@@ -922,7 +942,7 @@ re_clutch%>%
          r.squared =  map_dbl(stat, ~mcfadden(.)))%>%
   select(sumr, stat,r.squared)%>%
   unnest()%>%
-  select(c(term:p.value, r.squared))
+  select(c(term:p.value, r.squared, df.residual))
 
 ```
 
@@ -943,7 +963,7 @@ re_clutch%>%
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
-  select(component:pseudo.r.squared)
+  select(component:pseudo.r.squared, df.residual)
 
 ```
 
@@ -1013,7 +1033,7 @@ re_embryo%>%
          stat = map(mod, broom::glance))%>%
   select(sumr,stat)%>%
   unnest()%>%
-  select(component:p.value, pseudo.r.squared)
+  select(component:p.value, pseudo.r.squared, df.residual)
 ```
 
 Plotting relatonship between residuals and female SVL:
@@ -1063,7 +1083,7 @@ re_embryo%>%
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
-  select(component:p.value, pseudo.r.squared)
+  select(component:p.value, pseudo.r.squared, df.residual)
 ```
 
 ```{r fig.height=6}
