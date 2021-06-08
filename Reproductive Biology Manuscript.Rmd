@@ -894,13 +894,16 @@ re <- embryos%>%
 
 ```{r}
 re_clutch <- re%>%
-  select(Field.Code, Egg.Weigth..g.., Mother.Wt, Female.SVL)%>%
+  select(Field.Code, Egg.Weigth..g.., Mother.Wt, Female.SVL, Embryo.SVL)%>%
   group_by(Field.Code)%>%
   summarise(clutch.size = n(),
-            Clutch.wt = sum(Egg.Weigth..g..),
+            Clutch.wt = sum(Egg.Weigth..g.., na.rm = T),
             Mother.wt = last(Mother.Wt),
-            Female.SVL = last(Female.SVL))%>%
-  mutate(rcm = Clutch.wt/(Mother.wt - Clutch.wt))
+            Female.SVL = last(Female.SVL),
+            Embryo.SVL = median(Embryo.SVL, na.rm = T))%>%
+  mutate(rcm = Clutch.wt/(Mother.wt - Clutch.wt))%>%
+  filter(rcm > 0)%>% # removing missing data
+  replace_na(replace = list(Embryo.SVL = 3)) # filling small embryos svl
 
 re_clutch%>%
   ggplot(aes(Female.SVL, clutch.size))+
@@ -938,26 +941,24 @@ The number of eggs borne by females increase by `r exp(0.025)` for every 1 cm in
 require(betareg)
 
 re_clutch%>%
-  select(Female.SVL, rcm)%>%
+  select(Female.SVL, Embryo.SVL, rcm)%>%
   nest()%>%
-  mutate(mod = map(data, ~betareg(rcm ~ Female.SVL, data = .)),
+  mutate(mod = map(data, ~betareg(rcm ~ Female.SVL + Embryo.SVL, data = .)),
          sumr = map(mod, ~tidy(., conf.int = T)),
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
   select(component:pseudo.r.squared)
 
-re_mod <- betareg(rcm ~ Female.SVL, data = re_clutch)
+re_mod <- betareg(rcm ~ Embryo.SVL, data = re_clutch)
 ```
 
 ```{r fig.height=6}
 re_clutch%>%
-  mutate(fitted = predict(re_mod, re_clutch),
-         q.low = predict(re_mod, re_clutch, "quantile", at = c(0.05)),# lower bound
-         q.high = predict(re_mod, re_clutch, "quantile", at = c(0.95)))%>% # upper bound
-  ggplot(aes(Female.SVL, rcm))+
+  modelr::add_residuals(re_mod)%>%
+  ggplot(aes(Female.SVL, resid))+
   geom_point(aes(col = clutch.size), size = 3)+
-  geom_smooth(aes(y = fitted, ymin = q.low, ymax = q.high), stat = "identity", linetype = "dashed")+
+  geom_smooth(method = "lm", linetype = "dashed")+
   scale_y_continuous(name = "Relative clutch mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Clutch size")+
