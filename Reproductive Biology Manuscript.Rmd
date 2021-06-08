@@ -232,8 +232,8 @@ dev.yr <- snakes%>%
   filter(!is.na(Class))%>% # removing empty class 
   group_by(Species)%>%
   nest()%>%
-  mutate(mod = map(data, ~multinom(Class ~ Year, data = .)),
-         null = map(data, ~multinom(Class ~ 1, data = .)),
+  mutate(mod = map(data, ~nnet::multinom(Class ~ Year, data = .)),
+         null = map(data, ~nnet::multinom(Class ~ 1, data = .)),
          smry = map(mod, ~broom::tidy(., exonentiate = T)),
          # Calculating mc fadden's r2
          r2 = map2_dbl(mod, null, ~ 1 - .x$value/.y$value))
