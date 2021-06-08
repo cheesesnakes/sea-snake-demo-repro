@@ -765,7 +765,8 @@ embryos%>%
 embryos%>%
   group_by(Field.Code)%>%
   filter(Sex != "")%>%
-  summarise(prop.female = sum(Sex == "Female")/n())%>%
+  summarise(prop.female = sum(Sex == "Female")/n(),
+            sd = sqrt(prop.female*(1-prop.female)/n()))
   skimr::skim(prop.female)%>%
   skimr::yank("numeric")%>%
   select(c(skim_variable, mean, sd))
