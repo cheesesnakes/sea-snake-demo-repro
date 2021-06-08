@@ -48,12 +48,9 @@ ggsave(fig2, filename = "../Figures/figure2.tiff", height = 9, width = 8)
 # Figure 3
 
 fig3a <- re_clutch%>%
-  mutate(fitted = predict(re_mod, re_clutch),
-         q.low = predict(re_mod, re_clutch, "quantile", at = c(0.05)),# lower bound
-         q.high = predict(re_mod, re_clutch, "quantile", at = c(0.95)))%>% # upper bound
   ggplot(aes(Female.SVL, rcm))+
   geom_point(aes(col = clutch.size), size = 3)+
-  geom_smooth(aes(y = fitted, ymin = q.low, ymax = q.high), stat = "identity", linetype = "dashed")+
+  geom_smooth(data = re_simdata, aes(y = fit, ymin = fit - se.fit, ymax = fit + se.fit), stat = "identity", linetype = "dashed")+
   scale_y_continuous(name = "Relative clutch mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Clutch size")+
@@ -64,17 +61,16 @@ fig3a <- re_clutch%>%
   guides(colour = guide_colorbar(title.position = "top", title.hjust = 0.5, barwidth = 10))
 
 fig3b <- re_embryo%>%
-  modelr::add_residuals(emsvlinv)%>%
-  ggplot(aes(Female.SVL, resid))+
+  ggplot(aes(Female.SVL, inv))+
   geom_point(aes(col = Embryo.SVL), size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
-  scale_y_continuous(name = "Relative egg mass (residuals)")+
+  geom_smooth(data = inv_simdata, aes(y = fit, ymin = fit -se.fit, ymax = fit+se.fit),stat = "identity", linetype = "dashed", size = 1)+
+  scale_y_continuous(name = "Relative egg mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Embryo SVL (cm)")+
   labs(title = "B")+
-  theme(legend.position=c(0.8, 0.8), 
+  theme(legend.position=c(0.825, 0.85), 
         legend.direction = "horizontal")+
-  guides(colour = guide_colorbar(title.position = "top", title.hjust = 0.5))
+  guides(colour = guide_colorbar(title.position = "top", title.hjust = 0.5, barwidth = 10))
 
 fig3 <- gridExtra::grid.arrange(fig3a, fig3b, ncol = 1)
 

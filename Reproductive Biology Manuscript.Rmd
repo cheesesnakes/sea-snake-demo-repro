@@ -26,7 +26,6 @@ theme_set(theme_bw()+
 
 ```
 
-
 # Introduction
 
 This the code for analysis and supplementary figures for the manuscript. The manuscript is currently under review.
@@ -73,6 +72,7 @@ snakes%>%
   group_by(Species)%>%
   count(name = "N")
 ```
+
 The number of snakes sampled in each year:
 
 ```{r}
@@ -83,7 +83,6 @@ n.yr <- snakes%>%
 n.yr%>%
   spread(Year, N)
 ```
-
 
 The number of trips (n) and fishing effort (haul-hours) sampled for sea snakes in the current study.
 
@@ -101,8 +100,7 @@ snakes%>%
   
 ```
 
-
-# Demographics of _H. schistosus_ across time
+# Demographics of *H. schistosus* across time
 
 ## Age structure
 
@@ -272,7 +270,7 @@ dev.yr%>%
   theme(legend.text = element_text(face = "italic"))
 ```
 
-Age structure of *H. schistosus* does not change significantly over a four year period from 2016 to 2018. 
+Age structure of *H. schistosus* does not change significantly over a four year period from 2016 to 2018.
 
 The proportion of *H. curtus* juveniles increases significantly between 2016 and 2018
 
@@ -292,7 +290,6 @@ month.svl <- HS%>%
 
 births <- data.frame(Species = "Hydrophis schistosus", Month = "April")
 ```
-
 
 ```{r, fig.height = 4.5, fig.width=8}
 # plotting distribution of SVL across months
@@ -331,7 +328,6 @@ snakes%>%
   summarise(prop.neonate = sum(Snout.to.Vent..cm. < 40)/n())%>%
   spread(Month, prop.neonate)
 ```
-
 
 ## Sex ratios
 
@@ -423,7 +419,7 @@ The proportion of female *H. curtus* changed significantly across years. *H. sch
 
 # Mortality in bycatch
 
-## Overall mortality rate 
+## Overall mortality rate
 
 ```{r}
 snakes%>%
@@ -452,6 +448,7 @@ snakes%>%
   select(sumr, r2)%>%
   unnest()
 ```
+
 Fitted probability of mortality:
 
 ```{r}
@@ -542,6 +539,7 @@ snakes%>%
   theme(strip.text = element_text(face = "italic"))
 
 ```
+
 *H. curtus* adults had the highest mortality rate overall. *H. schistosus* juveniles had the lowest.
 
 ## Mortality rate by sex
@@ -604,6 +602,7 @@ snakes%>%
   theme(strip.text = element_text(face = "italic"))
 
 ```
+
 There was no difference in mortality rates across sexes in either species.
 
 ## Mortality and female reproductive status
@@ -670,7 +669,7 @@ HS%>%
 
 ```
 
-# Observed reproductive cycle of _H. schistosus_
+# Observed reproductive cycle of *H. schistosus*
 
 ## Proportion of gravid females in the sample
 
@@ -803,7 +802,7 @@ embryos%>%
 
 ## Matrotrophy
 
-Do female _H. schistosus_ expend energy in the development of embryos? or Are the eggs formed and yolk only provides nourishment?
+Do female *H. schistosus* expend energy in the development of embryos? or Are the eggs formed and yolk only provides nourishment?
 
 ### Change in yolk weight with embryo weight
 
@@ -830,7 +829,7 @@ embryos%>%
   select(term:r.squared)
 ```
 
-Yolk weight decreases by 0.45 g for every 1g increase in embryo weight. 
+Yolk weight decreases by 0.45 g for every 1g increase in embryo weight.
 
 ### Change in egg mass with embryo development
 
@@ -859,7 +858,7 @@ embryos%>%
   select(term:r.squared)
 ```
 
-Total egg mass increases by 0.36 g for every 1g increase in embryo weight. 
+Total egg mass increases by 0.36 g for every 1g increase in embryo weight.
 
 Note: Embryo weight is log-normally distributed.
 
@@ -867,7 +866,7 @@ Along with decrease of fat bodies of gravid females (Figure A1) as embryos devel
 
 # Reproductive effort
 
-Does the amount of enery expended by female _H. schistosus_ reduce with age?
+Does the amount of enery expended by female *H. schistosus* reduce with age?
 
 ```{r}
 # Cleaning reproductive effort data
@@ -888,7 +887,6 @@ re <- embryos%>%
   # Removing erroneous data point
   filter(Female.SVL > 50)
 ```
-
 
 ## Increase in clutch size with female age
 
@@ -944,21 +942,38 @@ re_clutch%>%
   select(Female.SVL, Embryo.SVL, rcm)%>%
   nest()%>%
   mutate(mod = map(data, ~betareg(rcm ~ Female.SVL + Embryo.SVL, data = .)),
-         sumr = map(mod, ~tidy(., conf.int = T)),
+         sumr = map(mod, ~tidy(.)),
          stat = map(mod, broom::glance))%>%
   select(sumr, stat)%>%
   unnest()%>%
   select(component:pseudo.r.squared)
 
-re_mod <- betareg(rcm ~ Embryo.SVL, data = re_clutch)
 ```
 
 ```{r fig.height=6}
+# Predicting for plotting fit
+require(gam)
+require(mgcv)
+
+re_mod <- gam(rcm ~ Female.SVL + Embryo.SVL, family = betar(link = "logit"), data = re_clutch)
+
+re_simdata <- data.frame(Female.SVL = seq(min(re_clutch$Female.SVL), max(re_clutch$Female.SVL), 0.1),
+                         Embryo.SVL = median(re$Embryo.SVL, na.rm = T))
+
+re_pred <- predict(re_mod, newdata = re_simdata, "response", se.fit = T)
+
+re_simdata <- enframe(re_pred)%>%
+  spread(name, value)%>%
+  unnest()%>%
+  mutate(Female.SVL = re_simdata$Female.SVL,
+         Embryo.SVL = re_simdata$Embryo.SVL)
+
+# Plotting
+
 re_clutch%>%
-  modelr::add_residuals(re_mod)%>%
-  ggplot(aes(Female.SVL, resid))+
+  ggplot(aes(Female.SVL, rcm))+
   geom_point(aes(col = clutch.size), size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed")+
+  geom_smooth(data = re_simdata, aes(y = fit, ymin = fit - se.fit, ymax = fit + se.fit), stat = "identity", linetype = "dashed")+
   scale_y_continuous(name = "Relative clutch mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Clutch size")+
@@ -988,7 +1003,7 @@ re_embryo <- re%>%
 
 ```
 
-**Linear model to detemine relationship between female SVL and investment per embryo:**
+**Linear model to determine relationship between female SVL and investment per embryo:**
 
 We have controlled for the effect of embryo development.
 
@@ -1009,16 +1024,22 @@ Plotting relatonship between residuals and female SVL:
 ```{r fig.height=6}
 # using residuals to control for embryo development
 
-emsvlinv <- betareg(inv ~ Embryo.SVL, data = re_embryo)
+emsvlinv <- gam(inv ~ Female.SVL + Embryo.SVL, family = betar(link = "logit"), data = re_embryo)
+
+inv_simdata <- data.frame(Female.SVL = seq(min(re_embryo$Female.SVL), max(re_embryo$Female.SVL), 0.1),
+                          Embryo.SVL = median(re_embryo$Embryo.SVL, na.rm = T))%>%
+  nest()%>%
+  mutate(sim = map(data, ~predict(object = emsvlinv, newdata = ., type = "response", se.fit = T)),
+         sim = map(sim, ~data.frame(.)))%>%
+  unnest()
 
 # Plotting
 
 re_embryo%>%
-  modelr::add_residuals(emsvlinv)%>%
-  ggplot(aes(Female.SVL, resid))+
+  ggplot(aes(Female.SVL, inv))+
   geom_point(aes(col = Embryo.SVL), size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
-  scale_y_continuous(name = "Relative egg mass (residuals)")+
+  geom_smooth(data = inv_simdata, aes(y = fit, ymin = fit -se.fit, ymax = fit+se.fit),stat = "identity", linetype = "dashed", size = 1)+
+  scale_y_continuous(name = "Relative egg mass")+
   scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
   scale_color_viridis(name = "Embryo SVL (cm)")
 
@@ -1030,19 +1051,6 @@ The relative egg mass (controlled for embryo development) reduces with female SV
 ## Difference in reproductive effort for male and female embryos
 
 Does female investment differ by sex of the embryo?
-
-```{r fig.height=6}
-re_embryo%>%
-  filter(Embryo.Sex == "Male" | Embryo.Sex == "Female")%>%
-  modelr::add_residuals(emsvlinv)%>%
-  ggplot(aes(Female.SVL, resid, shape = Embryo.Sex))+
-  geom_point(aes(col = Embryo.SVL), size = 3)+
-  geom_smooth(method = "lm", linetype = "dashed", size = 1)+
-  scale_y_continuous(name = "Relative egg mass (residuals)")+
-  scale_x_continuous(limits = c(85, 115), name = "Female SVL (cm)")+
-  scale_color_viridis(name = "Embryo SVL (cm)")+
-  scale_shape_discrete(name = "Embryo Sex")
-```
 
 **Linear model to test for the difference in female investment by embryo sex:**
 
@@ -1060,5 +1068,28 @@ re_embryo%>%
   unnest()%>%
   select(component:p.value, pseudo.r.squared)
 ```
-Female investment does not differ significantly with embryo sex.
 
+```{r fig.height=6}
+# Simulating data to plot model fit
+
+inv_sex_mod <- gam(inv ~ Embryo.Sex + Embryo.SVL, family = betar(link = "logit"), data = re_embryo)
+  
+inv_sex_simdata <- data.frame(Embryo.Sex = c("Male", "Female"),
+                              Embryo.SVL = median(re_embryo$Embryo.SVL, na.rm = T))%>%
+  nest()%>%
+  mutate(sim = map(data, ~predict(inv_sex_mod, newdata = ., type = "response", se.fit = T)),
+         sim = map(data, ~data.frame(sim)))%>%
+  unnest()
+
+re_embryo%>%
+  filter(Embryo.Sex == "Male" | Embryo.Sex == "Female")%>%
+  ggplot(aes(Embryo.Sex, inv))+
+  geom_jitter(aes(col = Embryo.SVL), size = 2, width = 0.125)+
+  geom_pointrange(data = inv_sex_simdata, aes(y = fit, ymin = fit -(se.fit*1.96), ymax = fit+(se.fit*1.96)), size = 1, col = "red")+
+  scale_y_continuous(name = "Relative egg mass")+
+  scale_x_discrete(name = "Embryo Sex")+
+  scale_color_viridis(name = "Embryo SVL (cm)")
+
+```
+
+Female investment does not differ significantly with embryo sex.
