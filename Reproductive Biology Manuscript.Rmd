@@ -763,13 +763,9 @@ embryos%>%
 
 ```{r}
 embryos%>%
-  group_by(Field.Code)%>%
   filter(Sex != "")%>%
   summarise(prop.female = sum(Sex == "Female")/n(),
             sd = sqrt(prop.female*(1-prop.female)/n()))
-  skimr::skim(prop.female)%>%
-  skimr::yank("numeric")%>%
-  select(c(skim_variable, mean, sd))
 ```
 
 ### Number of feamle embryos
@@ -797,7 +793,7 @@ Percentage of eggs with no embryos present:
 ```{r}
 embryos%>%
   count(Embryo)%>%
-  mutate(N = sum(n), rate = n*100/N)%>%
+  mutate(N = sum(n), rate = n/N, sd = sqrt(rate*(1-rate)/N))%>%
   select(-N)
 ```
 
