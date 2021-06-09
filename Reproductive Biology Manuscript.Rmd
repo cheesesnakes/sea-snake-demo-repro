@@ -545,11 +545,14 @@ snakes%>%
   unnest(fit)%>%
   mutate(Class = factor(c("Adult", "Juvenile", "Neonate")))%>%
   ggplot(aes(Class, fit))+
-  geom_pointrange(aes(ymin = fit - se.fit, ymax = fit + se.fit))+
-  labs(y = "P(Dead)")+
+  #geom_pointrange(aes(ymin = fit - se.fit*1.96, ymax = fit + se.fit*1.96))+
+  geom_col(width = 0.5, col = "black", fill = "grey")+
+  geom_errorbar(aes(ymin = fit - se.fit, ymax = fit + se.fit), width = 0.125)+
+  labs(y = "P(Mortality)", x = "Developmental Stage")+
   facet_wrap(~Species)+
   theme(strip.text = element_text(face = "italic"))
 
+ggsave(last_plot(), filename = "Figures/figure4.tiff", height = 4.5, width = 8)
 ```
 
 *H. curtus* adults had the highest mortality rate overall. *H. schistosus* juveniles had the lowest.
